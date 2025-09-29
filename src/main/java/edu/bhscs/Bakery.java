@@ -3,6 +3,7 @@ package edu.bhscs;
 public class Bakery {
   // This file is for my Bakery class.
   // A Bakery is basically the "place" that makes cakes and gives them to people.
+  // Fields and properties of a Bakery
 
   String name; // the name of the bakery
 

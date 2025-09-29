@@ -4,19 +4,22 @@
 // 9/21/25
 
 /*
- * DESCRIPTION: This excercise is about learning about variables, constants, and types
- * INPUT: We don't know yet :(
+ * DESCRIPTION: The main goal is to make a bake sale.
+ * Required is a bakery, cake, customer. and PTSA to give the money
+ * This excercise is about learning objects, classes, and methods.
+ * My goal is to have a customer, come into the bakery and choose flavors and everything
+ * INPUT: Name, flavor, frosting, grosting, size, layers
  * OUTPUT: Some cool lines in the command terminal thing
  * EDGE CASE: Every case is an edge case
  */
 
 package edu.bhscs;
 
-// This file "talks to" the other files (Cake, Person, Bakery).
+// This file talks to the other files (Cake, Person, Bakery).
 
 import java.util.Scanner; // I need Scanner so I can let the user type stuff into the terminal
 
-public class CakeDemo {
+public class Main {
   public static void main(String[] args) {
     // Scanner lets me read input from the user
     Scanner sc = new Scanner(System.in);
@@ -30,7 +33,8 @@ public class CakeDemo {
     Bakery bakery = new Bakery("Sweet Treats");
 
     // Step 3: Ask for cake details
-    // NOTE: I am not doing full "error checking" — I just trust the user to type one of the
+    // NOTE: I am not doing full "error checking" I am just basically trusting the user to type one
+    // of the
     // options.
     System.out.println("\nChoose a cake size (small / medium / large):");
     String size = sc.nextLine();

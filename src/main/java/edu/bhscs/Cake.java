@@ -1,7 +1,6 @@
 package edu.bhscs;
 
-// This file is only for my Cake class.
-// I am separating it so that my code looks like actual OOP style.
+// This file is only for my Cake class..
 // A Cake is an object that has details like size, layers, flavor, frosting, and grosting
 // (decorations).
 // I also made it so the Cake knows how to "draw itself" in the terminal.
@@ -15,7 +14,7 @@ public class Cake {
   String grosting; // decorations like sprinkles, cherries, candles
 
   // This is the constructor.
-  // A constructor is like a blueprint step that tells Java how to build a Cake object
+  // like a blueprint step that tells Java how to build a Cake object
   // when I use "new Cake(...)"
   public Cake(String size, int layers, String flavor, String frosting, String grosting) {
     this.size = size; // "this" just means I’m talking about THIS cake’s size
@@ -32,22 +31,30 @@ public class Cake {
 
     // If the cake only has 1 layer
     if (layers == 1) {
-      System.out.println("   |__|");
+      System.out.println("   |___|");
     }
     // If the cake has 2 layers
     else if (layers == 2) {
-      System.out.println("   |__|");
+      System.out.println("   |___|");
       System.out.println("  |_____|");
     }
     // If the cake has 3 layers
     else if (layers == 3) {
-      System.out.println("   |__|");
+      System.out.println("   |___|");
       System.out.println("  |_____|");
       System.out.println(" |_______|");
     }
 
     // This line explains the details of the cake in plain English
-    System.out.println("It is a " + size + " " + flavor + " cake with " + frosting
-        + " frosting and " + grosting + ".");
+    System.out.println(
+        "It is a "
+            + size
+            + " "
+            + flavor
+            + " cake with "
+            + frosting
+            + " frosting and "
+            + grosting
+            + ".");
   }
 }
