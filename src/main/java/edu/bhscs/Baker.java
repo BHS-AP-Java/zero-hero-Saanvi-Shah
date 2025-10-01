@@ -33,7 +33,7 @@ public class Baker {
 
   // method
   public void bakeCake() {
-    System.out.println("The baker is baking the cake...");
+    System.out.println("The baker is taking the order...");
     // I could add more details here about the baking process
 
   }

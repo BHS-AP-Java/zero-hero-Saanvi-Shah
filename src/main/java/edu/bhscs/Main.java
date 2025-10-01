@@ -31,7 +31,7 @@ public class Main {
     Bakery bakery = new Bakery("Sweet Treats");
 
     // Adding experience of baker as a factor
-    Baker baker = new Baker(5, false);
+    Baker baker = new Baker(1, false);
     baker.bakeCake();
 
     // Asking for cake details
@@ -56,7 +56,7 @@ public class Main {
     System.out.println("Choose flavor (chocolate / vanilla / strawberry):");
     String flavor = sc.nextLine();
 
-    System.out.println("Choose frosting (buttercream / whipped cream / fondant):");
+    System.out.println("Choose frosting (chocolate / vanilla / strawberry):");
     String frosting = sc.nextLine();
 
     System.out.println("Choose grosting (sprinkles / cherries / candles):");
