@@ -12,6 +12,7 @@ public class Cake {
   String flavor; // chocolate, vanilla, strawberry
   String frosting; // buttercream, whipped cream, fondant
   String grosting; // decorations like sprinkles, cherries, candles
+  Flour flour; // a Cake "has a" Flour
 
   // This is the constructor.
   // like a blueprint step that tells Java how to build a Cake object
@@ -22,6 +23,7 @@ public class Cake {
     this.flavor = flavor;
     this.frosting = frosting;
     this.grosting = grosting;
+    this.flour = new Flour("All-purpose flour", 5); // Every cake "has a" Flour
   }
 
   // This method (function inside a class) prints the cake to the terminal.
@@ -55,6 +57,11 @@ public class Cake {
             + frosting
             + " frosting and "
             + grosting
+            + "."
+            + " It is made with "
+            + flour.quantity
+            + " pounds of "
+            + flour.name
             + ".");
   }
 }

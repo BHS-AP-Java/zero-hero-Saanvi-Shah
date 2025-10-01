@@ -27,7 +27,7 @@ public class Main {
     // Step 1: Ask the player for their name and make a Person object
     System.out.println("Welcome to the Bakery! What is your name?");
     String personName = sc.nextLine();
-    Person customer = new Person(personName);
+    PTSA customer = new PTSA(personName);
 
     // Step 2: Create a Bakery object
     Bakery bakery = new Bakery("Sweet Treats");
