@@ -68,6 +68,12 @@ public class Main {
     // Show the cake (draw it)
     myCake.showCake();
 
+    // Creating a Bank object
+    Bank bank = new Bank();
+    System.out.println("\nThe cake costs $20. Processing payment...");
+    bank.processTransaction(20);
+    System.out.println("The PTSA thanks you for your donation!");
+
     // The person eats the cake
     customer.eatCake(myCake);
 

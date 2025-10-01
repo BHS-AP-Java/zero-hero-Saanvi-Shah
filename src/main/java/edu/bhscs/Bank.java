@@ -24,11 +24,28 @@ public class Bank {
 
   // Fields and properties
 
-  String name; // the name of the bank
-  int totalAssets; // total assets of the bank
+  int customerBalance = 100; // starting balance for customer
+  int ptsaBalance = 0; // starting balance for PTSA
 
   // Constructor: makes a new Bank account for customer and PTSA
 
+  public Bank() {
+
+    this.customerBalance = customerBalance;
+    this.ptsaBalance = ptsaBalance;
+  }
+
+
   // Method: the bank does something
 
+  public void processTransaction(int amount) {
+    if (amount <= customerBalance) {
+      customerBalance -= amount;
+      ptsaBalance += amount;
+      System.out.println("Transaction successful! Customer balance: $" + customerBalance);
+      System.out.println("PTSA balance: $" + ptsaBalance);
+    } else {
+      System.out.println("Transaction failed! Insufficient funds in customer account.");
+    }
+  }
 }
