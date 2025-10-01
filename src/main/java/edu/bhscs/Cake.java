@@ -1,3 +1,14 @@
+// Saanvi Shah
+// 9/30/25
+// P2
+// This is making the CAKE class!!!
+
+// DESCRIPTION: Creating a cake that has size, layers, flavor, frosting, and grosting
+// INPUT: size, layers, flavor, frosting, grosting
+// OUTPUT: A line saying the cake is being shown
+// EDGE CASE: None
+//
+
 package edu.bhscs;
 
 // This file is only for my Cake class..

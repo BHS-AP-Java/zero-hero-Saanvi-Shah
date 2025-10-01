@@ -1,3 +1,14 @@
+// Saanvi Shah
+// 9/30/25
+// P2
+// This is making the bakery class
+
+// DESCRIPTION: Creating a bakery that sells cakes
+// INPUT: name
+// OUTPUT: A line saying the bakery is preparing your cake
+// EDGE CASE: None
+//
+
 package edu.bhscs;
 
 public class Bakery {

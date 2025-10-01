@@ -1,3 +1,14 @@
+// Saanvi Shah
+// 9/30/25
+// P2
+// This is making the flour class
+
+// DESCRIPTION: Creating a flour that has name, quantity, price, and quality
+// INPUT: name, weight
+// OUTPUT: A line saying the flour is expired
+// EDGE CASE: None
+//
+
 package edu.bhscs;
 
 public class Flour {
