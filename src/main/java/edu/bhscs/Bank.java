@@ -31,8 +31,8 @@ public class Bank {
 
   public Bank() {
 
-    this.customerBalance = customerBalance;
-    this.ptsaBalance = ptsaBalance;
+    // this.customerBalance = customerBalance;
+    // this.ptsaBalance = ptsaBalance;
   }
 
 
