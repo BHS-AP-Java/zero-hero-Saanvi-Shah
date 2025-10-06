@@ -3,6 +3,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "CakeTest",
+      "request": "launch",
+      "mainClass": "edu.bhscs.CakeTest",
+      "projectName": "ap-java-starter"
+    },
+    {
+      "type": "java",
       "name": "CakeDemo",
       "request": "launch",
       "mainClass": "edu.bhscs.CakeDemo",

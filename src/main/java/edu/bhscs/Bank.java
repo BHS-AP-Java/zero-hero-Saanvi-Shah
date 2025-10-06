@@ -35,7 +35,6 @@ public class Bank {
     // this.ptsaBalance = ptsaBalance;
   }
 
-
   // Method: the bank does something
 
   public void processTransaction(int amount) {

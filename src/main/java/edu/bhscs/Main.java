@@ -26,7 +26,7 @@ public class Main {
     System.out.println("Welcome to the Bakery! What is your name?");
     String personName = sc.nextLine();
     Customer customer = new Customer(personName);
-    
+
     // Creating a Bakery object
     Bakery bakery = new Bakery("Sweet Treats");
 
