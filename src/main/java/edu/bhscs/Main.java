@@ -44,7 +44,7 @@ public class Main {
     } else {
       System.out.println("They are not a certified baker.");
     }
-    // Asking for cake details
+    // Asking for cake details such as flavor, frosting, grosting, size, layers
 
     System.out.println("\nChoose a cake size (small / medium / large):");
     String size = sc.nextLine();
