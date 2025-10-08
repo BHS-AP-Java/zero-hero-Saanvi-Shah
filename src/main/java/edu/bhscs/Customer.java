@@ -1,30 +1,25 @@
 // Saanvi Shah
-// 9/30/25
+// 10/07/25
 // P2
-// This is making the customer class
+// This is making the Customer interface
 
-// DESCRIPTION: Creating a flour that has name, quantity, price, and quality
-// INPUT: name
-// OUTPUT: A line saying the person ate the cake
-// EDGE CASE: Nothing entered
-//
+/*
+ * DESCRIPTION: The Customer interface is used by the Baker class to interact with a customer. The
+ * Player class implements this interface since every player is also a customer.
+ *
+ * INPUT: Payment amount and the cake they receive.
+ *
+ * OUTPUT: Methods are implemented in the Player class to pay for and receive cakes.
+ */
 
 package edu.bhscs;
 
-// This file is for my Person class.
-// A Person is just an object with a name. The person can also eat cake.
+public interface Customer {
+  // ---------------- METHODS ----------------
 
-public class Customer {
-  String name; // the name of the person
+  // pay(): the customer pays the given amount and returns how much was paid
+  int pay(int price);
 
-  // Constructor: makes a new Person with a name
-  public Customer(String name) {
-    this.name = name;
-  }
-
-  // Method: what the person does (eat cake)
-  // It prints a sentence saying the person ate the cake.
-  public void eatCake(Cake cake) {
-    System.out.println(name + " eats the cake happily!");
-  }
+  // takeCake(): the customer receives the cake baked by the baker
+  void takeCake(Cake cake);
 }

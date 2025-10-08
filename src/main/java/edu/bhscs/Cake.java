@@ -1,78 +1,119 @@
 // Saanvi Shah
-// 9/30/25
+// 10/07/25
 // P2
 // This is making the CAKE class!!!
 
-// DESCRIPTION: Creating a cake that has size, layers, flavor, frosting, and grosting
-// INPUT: size, layers, flavor, frosting, grosting
-// OUTPUT: A line saying the cake is being shown
-// EDGE CASE: None
-//
+/*
+ * DESCRIPTION:
+ * The Cake class represents the cake that the bakery makes and sells.
+ * It holds details about size, layers, flavor, frosting, and toppings.
+ * It can print either a plain cake or a fancy decorated cake based on player choice.
+ *
+ * INPUT:
+ * size, layers, flavor, frosting, topping
+ *
+ * OUTPUT:
+ * A visual ASCII cake and a sentence describing what kind of cake it is.
+ *
+ * EDGE CASES:
+ * - Layers over 3 are capped at 3
+ * - Missing or empty flavor/frosting/topping names
+ */
 
 package edu.bhscs;
 
-// This file is only for my Cake class..
-// A Cake is an object that has details like size, layers, flavor, frosting, and grosting
-// (decorations).
-// I also made it so the Cake knows how to "draw itself" in the terminal.
-
 public class Cake {
-  // These are the properties (aka variables) that describe my Cake.
-  String size; // how big the cake is (small, medium, large)
-  int layers; // how many layers (1-3 only)
-  String flavor; // chocolate, vanilla, strawberry
-  String frosting; // buttercream, whipped cream, fondant
-  String grosting; // decorations like sprinkles, cherries, candles
-  Flour flour; // a Cake "has a" Flour
+  // FIELDS AND PROPERTIES
+  String size;
+  int layers;
+  String flavor;
+  String frosting;
+  String topping;
+  Flour flour;
 
-  // This is the constructor.
-  // like a blueprint step that tells Java how to build a Cake object
-  // when I use "new Cake(...)"
-  public Cake(String size, int layers, String flavor, String frosting, String grosting) {
-    this.size = size; // "this" just means I’m talking about THIS cake’s size
-    this.layers = Math.min(layers, 3); // I force layers to never go over 3
+  // CONSTRUCTOR
+  public Cake(String size, int layers, String flavor, String frosting, String topping) {
+    this.size = size;
+    this.layers = Math.min(layers, 3);
     this.flavor = flavor;
     this.frosting = frosting;
-    this.grosting = grosting;
-    this.flour = new Flour("All-purpose flour", 5); // Every cake "has a" Flour
+    this.topping = topping;
+    this.flour = new Flour("All-purpose flour", 5);
   }
 
-  // This method (function inside a class) prints the cake to the terminal.
-  // It uses the number of layers to decide how to "draw" the pyramid cake.
+  // Alternate constructor
+  public Cake(String flavor, Flour f) {
+    this.size = "medium";
+    this.layers = 1;
+    this.flavor = flavor;
+    this.frosting = "buttercream";
+    this.topping = "sprinkles";
+    this.flour = f;
+  }
+
+  // METHODS
+
+  // Prints the plain cake (non-decorated)
   public void showCake() {
     System.out.println("\nHere is your cake:");
 
-    // If the cake only has 1 layer
     if (layers == 1) {
       System.out.println("   |___|");
-    }
-    // If the cake has 2 layers
-    else if (layers == 2) {
+    } else if (layers == 2) {
       System.out.println("   |___|");
       System.out.println("  |_____|");
-    }
-    // If the cake has 3 layers
-    else if (layers == 3) {
+    } else if (layers == 3) {
       System.out.println("   |___|");
       System.out.println("  |_____|");
       System.out.println(" |_______|");
     }
 
-    // This line explains the details of the cake in plain English
+    System.out.println("It is a " + size + " " + flavor + " cake.");
     System.out.println(
-        "It is a "
-            + size
-            + " "
-            + flavor
-            + " cake with "
-            + frosting
-            + " frosting and "
-            + grosting
-            + "."
-            + " It is made with "
-            + flour.quantity
-            + " pounds of "
-            + flour.name
-            + ".");
+        "It has " + layers + " layer(s) and " + frosting + " frosting with " + topping + ".");
+    System.out.println("Made with " + flour.quantity + " pounds of " + flour.name + ".");
+  }
+
+  // Prints the decorated cake (fancy version depending on layer count)
+  public void showDecoratedCake() {
+    System.out.println("\nHere is your decorated cake:");
+
+    if (layers == 1) {
+      // 🎂 1-LAYER DECORATED CAKE
+
+      System.out.println("  ╭┻┻┻┻┻┻┻┻┻╮ ");
+      System.out.println("  ┃╱╲╱╲╱╲╱╲╱┃ ");
+      System.out.println("  ┻━━━━━━━━━┻ ");
+
+    } else if (layers == 2) {
+      // 🎂 2-LAYER DECORATED CAKE
+      System.out.println("   ☆☆☆☆☆☆☆     ");
+      System.out.println("  ╭┻┻┻┻┻┻┻┻┻╮   ");
+      System.out.println("  ┃╱╲╱╲╱╲╱╲╱┃   ");
+      System.out.println(" ╭┻━━━━━━━━━┻╮ ");
+      System.out.println(" ┃╱╲╱╲╱╲╱╲╱╲╱┃   ");
+      System.out.println(" ┗━━━━━━━━━━━┛  ");
+      System.out.println(" ");
+      System.out.println(" ");
+      System.out.println("");
+    } else if (layers == 3) {
+      // 🎂 3-LAYER DECORATED CAKE
+      System.out.println("        i   i   i");
+      System.out.println("       |   |   |");
+      System.out.println("     ___|___|___|___");
+      System.out.println("    |~~~~~~~~~~~~~~~|");
+      System.out.println("    |               |");
+      System.out.println("  ___|_______________|___");
+      System.out.println(" |~~~~~~~~~~~~~~~~~~~~~~~|");
+      System.out.println(" |                       |");
+      System.out.println("__|_______________________|__");
+      System.out.println("|~~~~~~~~~~~~~~~~~~~~~~~~~~~|");
+      System.out.println("|___________________________|");
+      System.out.println(" * Triple-tier masterpiece *");
+    }
+
+    System.out.println("\nThis decorated cake is a " + flavor + " flavor cake!");
+    System.out.println("It has " + frosting + " frosting and " + topping + " on top!");
+    System.out.println("It is made with " + flour.quantity + " pounds of " + flour.name + ".");
   }
 }

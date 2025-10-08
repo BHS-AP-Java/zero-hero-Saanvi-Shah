@@ -1,32 +1,42 @@
 // Saanvi Shah
-// 9/30/25
+// 10/07/25
 // P2
-// This is making the bakery class
+// This is making the Bakery class
 
-// DESCRIPTION: Creating a bakery that sells cakes
-// INPUT: name
-// OUTPUT: A line saying the bakery is preparing your cake
-// EDGE CASE: None
-//
+/*
+ * DESCRIPTION: The Bakery class represents the shop that sells cakes. It has a name and can make
+ * and sell Cake objects when requested. The Bakery is where the Baker works and where the Player
+ * orders their cakes.
+ *
+ * INPUT: Cake details (like layers, flavor, frosting, toppings)
+ *
+ * OUTPUT: A message saying the bakery is preparing the cake
+ *
+ * EDGE CASES: - Invalid cake options - Zero or negative layers
+ */
 
 package edu.bhscs;
 
 public class Bakery {
-  // This file is for my Bakery class.
-  // A Bakery is basically the "place" that makes cakes and gives them to people.
-  // Fields and properties of a Bakery
-
+  // FIELDS AND PROPERTIES
   String name; // the name of the bakery
 
-  // Constructor: makes a new Bakery with a name
+  // CONSTRUCTOR
   public Bakery(String name) {
     this.name = name;
   }
 
+  // METHODS
   // Method: the bakery sells a cake
-  // It takes the details of the cake and returns a Cake object
-  public Cake sellCake(String size, int layers, String flavor, String frosting, String grosting) {
+  // It takes the cake details and returns a Cake object
+  public Backupzcake sellCake(
+      String size, int layers, String flavor, String frosting, String topping) {
     System.out.println(name + " bakery is preparing your cake...");
-    return new Cake(size, layers, flavor, frosting, grosting);
+    return new Backupzcake(size, layers, flavor, frosting, topping);
+  }
+
+  // Getter method for baker class )
+  public String getName() {
+    return name;
   }
 }

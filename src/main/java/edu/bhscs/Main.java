@@ -1,83 +1,142 @@
 // Saanvi Shah
 // P2
 // Making, Baking, and Buying a Cake
-// 9/21/25
+// 10/07/25
 
 /*
- * DESCRIPTION: The main goal is to make a bake sale.
- * Required is a bakery, cake, customer. and PTSA to give the money
- * This excercise is about learning objects, classes, and methods.
- * My goal is to have a customer, come into the bakery and choose flavors and eat cake.
- * INPUT: Name, flavor, frosting, grosting, size, layers
- * OUTPUT: Some cool lines in the command terminal thing
- * EDGE CASE: Every case is an edge case
+ * DESCRIPTION: This is the main class for my bake sale game. The player chooses a character,
+ * orders cakes, and interacts with the baker.
+ * INPUT: Character choice, cake options, decoration choice, and decisions if the baker steals.
+ * OUTPUT: Messages showing gameplay, cake visuals, PTSA donations, and bank balances.
+ * EDGE CASES: - Player runs out of money - Invalid menu input - Player chooses not to decorate cake
  */
 
 package edu.bhscs;
 
-import java.util.Scanner; // I need Scanner so I can let the user type stuff into the terminal
-
 public class Main {
   public static void main(String[] args) {
-    // Scanner lets me read input from the user
-    Scanner sc = new Scanner(System.in);
 
-    // Asking the player for their name and make a Person object
-    System.out.println("Welcome to the Bakery! What is your name?");
-    String personName = sc.nextLine();
-    Customer customer = new Customer(personName);
+    System.out.println("Welcome to the Sweet Treats Bake Sale!");
+    System.out.println("Choose your player:");
 
-    // Creating a Bakery object
-    Bakery bakery = new Bakery("Sweet Treats");
+    // Pre-made characters
+    System.out.println("1. Sally");
+    System.out.println("2. Bob");
+    System.out.println("3. Georgina");
 
-    // Adding experience of baker as a factor
-    Baker baker = new Baker(1, false);
-    baker.bakeCake();
+    // The Player class now handles the Scanner internally
+    Player player = new Player(); // no Scanner in Main
+    int choice = player.askInt("Enter 1, 2, or 3 to choose your character: ");
 
-    // Asking for cake details
-    // I am just basically trusting the user to type one
-    // of the options.
-    // Talking about how much experience the baker has
-    System.out.println("Our baker has " + baker.experience + " years of experience.");
-    if (baker.isCertified) {
-      System.out.println("They are also a certified baker!");
+    String name;
+    int balance;
+
+    // Assign character based on user input
+    if (choice == 1) {
+      name = "Sally";
+      balance = 100;
+    } else if (choice == 2) {
+      name = "Bob";
+      balance = 50;
     } else {
-      System.out.println("They are not a certified baker.");
+      name = "Georgina";
+      balance = 20;
     }
-    // Asking for cake details such as flavor, frosting, grosting, size, layers
 
-    System.out.println("\nChoose a cake size (small / medium / large):");
-    String size = sc.nextLine();
+    // Create player, bakery, baker, and PTSA objects
+    player.setName(name);
+    player.setBankBalance(balance);
+    Bakery bakery = new Bakery("Sweet Treats");
+    PTSA ptsa = new PTSA("Bothell High");
+    Baker baker = new Baker(player); // teacher's class
+    baker.f = new Flour("All-purpose flour", 5);
 
-    System.out.println("How many layers? (1-3):");
-    int layers = sc.nextInt();
-    sc.nextLine(); // This line clears the weird extra newline so the next input works.
+    System.out.println("\nWelcome, " + name + "! You have $" + balance + " in your bank account.");
 
-    System.out.println("Choose flavor (chocolate / vanilla / strawberry):");
-    String flavor = sc.nextLine();
+    boolean keepPlaying = true;
 
-    System.out.println("Choose frosting (chocolate / vanilla / strawberry):");
-    String frosting = sc.nextLine();
+    // LOOP: player can order multiple cakes
+    while (keepPlaying) {
+      System.out.println("\n---- New Cake Order ----");
 
-    System.out.println("Choose grosting (sprinkles / cherries / candles):");
-    String grosting = sc.nextLine();
+      int layers = player.askInt("How many layers? (1-3): ");
+      String flavor =
+          player.ask("Choose a cake flavor (chocolate / vanilla / strawberry / lemon / rhubarb): ");
 
-    // Bakery makes and gives us a Cake object
-    Cake myCake = bakery.sellCake(size, layers, flavor, frosting, grosting);
+      // Decoration option
+      String decorateChoice =
+          player.ask(
+              "Would you like it decorated for a $20 upcharge? (Highly recommended) (y/n): ");
+      boolean decorated = decorateChoice.equalsIgnoreCase("y");
 
-    // Show the cake (draw it)
-    myCake.showCake();
+      String frosting = "";
+      String topping = "";
 
-    // Creating a Bank object
-    Bank bank = new Bank();
-    System.out.println("\nThe cake costs $20. Processing payment...");
-    bank.processTransaction(20);
-    System.out.println("The PTSA thanks you for your donation!");
+      if (decorated) {
+        frosting =
+            player.ask(
+                "Choose frosting (chocolate / vanilla / strawberry / lemon / rhubarb / blueberry): ");
+        topping = player.ask("Choose topping (sprinkles / cherries / candles): ");
+      }
 
-    // The person eats the cake
-    customer.eatCake(myCake);
+      // Bakery makes the cake
+      Backupzcake cake = bakery.sellCake("medium", layers, flavor, frosting, topping);
+      baker.bakeCake(); // uses teacher's Baker class
+      baker.experience++; // baker gains experience after every bake
 
-    // Close scanner
-    sc.close();
+      // Cake price
+      int price = decorated ? 40 : 20;
+      System.out.println("\nYour cake costs $" + price);
+
+      // Check if player has enough money
+      if (player.getBankBalance() < price) {
+        System.out.println("You don't have enough money for this cake!");
+      } else {
+        player.pay(price);
+
+        // Randomly decide if baker donates or steals
+        boolean bakerHonest = Math.random() < 0.5;
+        if (bakerHonest) {
+          ptsa.receiveDonation(price);
+          System.out.println("The baker donates the money to the PTSA!");
+        } else {
+          System.out.println("Uh oh... The baker decided to keep the money!");
+          String action = player.ask("Do you want to (1) beat up the baker or (2) say nothing? ");
+          if (action.equals("1")) {
+            System.out.println("You confront the baker and recover the money!");
+            ptsa.receiveDonation(price);
+          } else {
+            System.out.println("You stay silent... The baker pockets the cash.");
+          }
+        }
+
+        // Show cake visual and details
+        System.out.println("\nHere’s your cake:");
+        if (decorated) {
+          cake.showDecoratedCake();
+        } else {
+          cake.showCake();
+        }
+
+        System.out.println("\nYou ordered a " + layers + "-layer " + flavor + " cake.");
+        if (decorated) {
+          System.out.println("With " + frosting + " frosting and " + topping + " on top!");
+        }
+
+        System.out.println("Your remaining balance: $" + player.getBankBalance());
+        System.out.println("Baker’s total experience: " + baker.experience + " cakes baked.");
+      }
+
+      // Ask to play again
+      String again = player.ask("\nWould you like to order another cake? (y/n): ");
+      if (!again.equalsIgnoreCase("y")) {
+        keepPlaying = false;
+      }
+    }
+
+    // Game end
+    System.out.println("\nThank you for visiting Sweet Treats Bakery!");
+    System.out.println("Final PTSA balance: $" + ptsa.totalFunds);
+    System.out.println("Goodbye, " + player.getName() + "!");
   }
 }

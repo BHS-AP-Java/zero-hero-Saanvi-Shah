@@ -1,40 +1,77 @@
 // Saanvi Shah
-// 9/26/25
+// 10/02/25
 // P2
-// This is making the baker class
+// This is making the Baker class
 
 /*
- * DESCRIPTION: Creating a baker with years of experience and if they are certified
- * INPUT: years of experience, if they are certified
- * OUTPUT: A line saying the baker is baking the cake
- * EDGE CASE: None
+ * DESCRIPTION: The Baker class represents the person who bakes cakes in the game. It uses the
+ * Player object to get user input and can interact with the Store, Cake, and Customer.
+ * INPUT: Player responses and orders from the game.
+ *OUTPUT: Messages describing the baker’s actions, cake baking progress, and experience.
+ * EDGE CASES: - Player doesn’t give valid input for cake type - Baker works without a store
+ * assigned
  */
 
 package edu.bhscs;
 
 public class Baker {
-  // fields and properties
+  //  FIELDS AND PROPERTIES
+  Player p; // the player interacting with the baker
+  Flour f; // the flour used by the baker
+  Store placeOfWork; // the bakery where the baker works
+  int cash; // baker’s total cash on hand
 
-  int experience; // in years
-  boolean isCertified;
-
-  // constructor
-  /* I want the baker to eventually get
-  certified after baking a certain amount of cakes. I don't know if I
-  Should do this by saving the previous answers of the baker and making
-  the first few cakes really bad and not what the person asked for or I
-  should allow for multiple orders within the saeme run of the program
-  and after a certain amount of cakes, the baker gets certified.
-  */
-  public Baker(int experience, boolean isCertified) {
-    this.experience = experience;
-    this.isCertified = isCertified;
+  // CONSTRUCTOR
+  Baker(Player p) {
+    this.p = p;
   }
 
-  // method
-  public void bakeCake() {
-    System.out.println("The baker is taking the order...");
-    // I could add more details here about the baking process
+  // METHODS
+  // This method allows the baker to take a cake order from a customer
+  void takeOrder(int price, Customer c) {
+    cash += c.pay(price);
+    c.takeCake(bakeCake());
+  }
 
+  // This method lets the baker bake a cake using the player’s answer
+  Backupzcake bakeCake() {
+    String answer = this.p.giveAnswer("What cake do you want?");
+    return new Backupzcake(answer, this.f);
+  }
+
+  // This method lets the baker accept a job at a store
+  void takeJob(Store bakery) {
+    String doYouWantToWorkHere =
+        this.p.giveAnswer("Do you want to work at " + bakery.getName() + "? (y/n)");
+    if (doYouWantToWorkHere.equals("y")) {
+      this.placeOfWork = bakery;
+      System.out.println("The baker now works at " + bakery.getName() + "!");
+    }
+  }
+
+  // ADDITIONS
+  int experience = 0; // how many cakes the baker has baked
+  boolean isCertified = false; // extra flavor from earlier assignment
+
+  // Prints information about the baker
+  public void printBakerInfo() {
+    System.out.println("\n--- Baker Info ---");
+    System.out.println("Experience: " + experience + " cakes baked.");
+    System.out.println("Certified: " + (isCertified ? "Yes" : "No"));
+    System.out.println("Cash on hand: $" + cash);
+    if (placeOfWork != null) {
+      System.out.println("Place of work: " + placeOfWork.getName());
+    } else {
+      System.out.println("Place of work: None yet.");
+    }
+  }
+
+  // Helper method to increase experience after each cake baked
+  public void gainExperience() {
+    experience++;
+    if (experience >= 3 && !isCertified) {
+      isCertified = true;
+      System.out.println("The baker has gained certification through experience!");
+    }
   }
 }
