@@ -87,7 +87,7 @@ public class Cake {
 
     } else if (layers == 2) {
       // 🎂 2-LAYER DECORATED CAKE
-      System.out.println("   ☆☆☆☆☆☆☆     ");
+     // System.out.println("   ☆☆☆☆☆☆☆     ");
       System.out.println("  ╭┻┻┻┻┻┻┻┻┻╮   ");
       System.out.println("  ┃╱╲╱╲╱╲╱╲╱┃   ");
       System.out.println(" ╭┻━━━━━━━━━┻╮ ");
@@ -98,18 +98,22 @@ public class Cake {
       System.out.println("");
     } else if (layers == 3) {
       // 🎂 3-LAYER DECORATED CAKE
-      System.out.println("        i   i   i");
-      System.out.println("       |   |   |");
-      System.out.println("     ___|___|___|___");
-      System.out.println("    |~~~~~~~~~~~~~~~|");
-      System.out.println("    |               |");
-      System.out.println("  ___|_______________|___");
-      System.out.println(" |~~~~~~~~~~~~~~~~~~~~~~~|");
-      System.out.println(" |                       |");
-      System.out.println("__|_______________________|__");
-      System.out.println("|~~~~~~~~~~~~~~~~~~~~~~~~~~~|");
-      System.out.println("|___________________________|");
-      System.out.println(" * Triple-tier masterpiece *");
+      System.out.println("    0   0  ");
+      System.out.println("     |   |     |");
+      System.out.println("  ____|___|____   ");
+      System.out.println("  0  |~ ~ ~ ~ ~ ~|   0   ");
+      System.out.println("   |  |           |   |  ");
+      System.out.println("  ___|__|___________|___|__   ");
+      System.out.println("  |/\\\\/\\\\/\\\\/\\\\/\\\\/\\\\/\\\\/\\\\/\\\\/\\\\/|     ");
+      System.out.println("  0  |       H a p p y       |   0     ");
+      System.out.println("  |/\\\\/\\\\/\\\\/\\\\/\\\\/\\\\/\\\\/\\\\/\\\\/\\\\/|     ");
+      System.out.println(".   _|___|_______________________|___|__    ");
+      System.out.println("  |/\\\\/\\\\/\\\\/\\\\/\\\\/\\\\/\\\\/\\\\/\\\\/\\\\/|     ");
+      System.out.println("    |                                   |    ");
+      System.out.println("    |         B i r t h d a y! ! !      |   ");
+      System.out.println("    | ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ |    ");
+      System.out.println("    |___________________________________|    ");
+      System.out.println("     ");
     }
 
     System.out.println("\nThis decorated cake is a " + flavor + " flavor cake!");

@@ -18,17 +18,17 @@
 package edu.bhscs;
 
 public class PTSA {
-  // ---------------- FIELDS AND PROPERTIES ----------------
+  // FIELDS AND PROPERTIES
   String name; // name of the PTSA (like "Bothell High")
   int totalFunds; // total money raised through bake sales
 
-  // ---------------- CONSTRUCTOR ----------------
+  // CONSTRUCTOR
   public PTSA(String name) {
     this.name = name;
     this.totalFunds = 0;
   }
 
-  // ---------------- METHODS ----------------
+  // METHODS
 
   // receiveDonation(): called whenever the baker donates
   public void receiveDonation(int amount) {
