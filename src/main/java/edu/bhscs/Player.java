@@ -93,7 +93,7 @@ public class Player implements Customer {
   }
 
   // Baker gives the player the cake (also required by Baker class)
-  public void takeCake(Backupzcake cake) {
+  public void takeCake(Cake cake) {
     System.out.println(name + " takes the cake and smiles happily!");
   }
 
