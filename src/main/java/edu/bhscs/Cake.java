@@ -87,7 +87,7 @@ public class Cake {
 
     } else if (layers == 2) {
       // 🎂 2-LAYER DECORATED CAKE
-     // System.out.println("   ☆☆☆☆☆☆☆     ");
+      // System.out.println("   ☆☆☆☆☆☆☆     ");
       System.out.println("  ╭┻┻┻┻┻┻┻┻┻╮   ");
       System.out.println("  ┃╱╲╱╲╱╲╱╲╱┃   ");
       System.out.println(" ╭┻━━━━━━━━━┻╮ ");

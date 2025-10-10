@@ -80,7 +80,8 @@ public class Main {
       }
 
       // Bakery makes the cake
-      Backupzcake cake = bakery.sellCake("medium", layers, flavor, frosting, topping);
+
+      Cake cake = bakery.sellCake("medium", layers, flavor, frosting, topping);
       baker.bakeCake(); // uses teacher's Baker class
       baker.experience++; // baker gains experience after every bake
 
