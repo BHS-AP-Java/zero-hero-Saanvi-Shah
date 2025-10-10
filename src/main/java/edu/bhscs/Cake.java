@@ -75,6 +75,7 @@ public class Cake {
 
     if (layers == 1) {
       // 🎂 1-LAYER DECORATED CAKE
+      System.out.println("             ");
       System.out.println("  ╭┻┻┻┻┻┻┻┻┻╮");
       System.out.println("  ┃╱╲╱╲╱╲╱╲╱┃");
       System.out.println("  ┻━━━━━━━━━┻");
