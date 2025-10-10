@@ -17,34 +17,25 @@
 
 package edu.bhscs;
 
-public class Baker {
-  // PROPERTIES AND FIELDS
-  Player p;
-  Flour f;
-  Store placeOfWork;
-  int cash;
+public class Bakery {
+  // FIELDS AND PROPERTIES
+  String name; // name of the bakery
 
   // CONSTRUCTOR
-  Baker(Player p) {
-    this.p = p;
+  public Bakery(String name) {
+    this.name = name;
   }
 
   // METHODS
-  void takeOrder(int price, Customer c) {
-    cash += c.pay(price);
-    c.takeCake(bakeCake());
+
+  // getName(): returns the bakery name
+  public String getName() {
+    return name;
   }
 
-  Cake bakeCake() {
-    String answer = this.p.giveAnswer("what cake do you you want?");
-    return new Cake(answer, this.f);
-  }
-
-  void takeJob(Store bakery) {
-    String doYouWantToWorkHere = this.p.giveAnswer("Do you want to work at " + bakery.getName());
-    if (doYouWantToWorkHere.equals("y")) {
-      this.placeOfWork = bakery;
-      System.out.println(this.name + " now works at " + bakery.getName());
-    }
+  // sellCake(): creates and returns a new cake with the given specifications
+  public Cake sellCake(String size, int layers, String flavor, String frosting, String topping) {
+    System.out.println(name + " is preparing your cake...");
+    return new Cake(size, layers, flavor, frosting, topping);
   }
 }

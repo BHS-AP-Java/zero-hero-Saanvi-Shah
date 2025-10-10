@@ -34,9 +34,9 @@ public class Baker {
   }
 
   // This method lets the baker bake a cake using the player’s answer
-  Backupzcake bakeCake() {
+  Cake bakeCake() {
     String answer = this.p.giveAnswer("What cake do you want?");
-    return new Backupzcake(answer, this.f);
+    return new Cake(answer, this.f);
   }
 
   // This method lets the baker accept a job at a store
