@@ -74,23 +74,27 @@ public class Cake {
     System.out.println("\nHere is your decorated cake:");
 
     if (layers == 1) {
-      // 🎂 1-LAYER DECORATED CAKE
+      //  1-LAYER DECORATED CAKE
       System.out.println("             ");
       System.out.println("  ╭┻┻┻┻┻┻┻┻┻╮");
       System.out.println("  ┃╱╲╱╲╱╲╱╲╱┃");
       System.out.println("  ┻━━━━━━━━━┻");
+      System.out.println("   ");
+      System.out.println("   ");
 
     } else if (layers == 2) {
-      // 🎂 2-LAYER DECORATED CAKE
-      System.out.println("    ☆☆☆☆☆☆☆");
+      //  2-LAYER DECORATED CAKE
+      System.out.println("   ☆☆☆☆☆☆☆☆");
       System.out.println("  ╭┻┻┻┻┻┻┻┻┻╮");
       System.out.println("  ┃╱╲╱╲╱╲╱╲╱┃");
       System.out.println(" ╭┻━━━━━━━━━┻╮");
       System.out.println(" ┃╱╲╱╲╱╲╱╲╱╲╱┃");
       System.out.println(" ┗━━━━━━━━━━━┛");
+      System.out.println("   ");
+      System.out.println("   ");
 
     } else if (layers == 3) {
-      // 🎂 3-LAYER DECORATED CAKE
+      //  3-LAYER DECORATED CAKE
       System.out.println("                 0   0");
       System.out.println("                 |   |");
       System.out.println("             ____|___|____");
@@ -106,10 +110,51 @@ public class Cake {
       System.out.println(" |         B i r t h d a y! ! !      |");
       System.out.println(" | ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ |");
       System.out.println(" |___________________________________|");
+      System.out.println("   ");
+      System.out.println("   ");
     }
 
-    System.out.println("\nThis decorated cake is a " + flavor + " flavor cake!");
-    System.out.println("It has " + frosting + " frosting and " + topping + " on top!");
-    System.out.println("It is made with " + flour.quantity + " pounds of " + flour.name + ".");
+    for (int i = 0; i < layers; i++) {
+      System.out.println(" |~~~~~~~~~~~~~~~~~~|");
+      for (int j = 0; j < layers; j++) {
+        System.out.println(" |==================|");
+      }
+    }
+
+    // System.out.println("\nThis decorated cake is a " + flavor + " flavor cake!");
+    // System.out.println("It has " + frosting + " frosting and " + topping + " on top!");
+    // System.out.println("It is made with " + flour.quantity + " pounds of " + flour.name + ".");
   }
+
+  public static void drawCake3D() {
+    int layers = 5; // number of cake layers
+    int width = 20; // width of cake top
+    int depth = 5; // how "3D" it looks
+
+    // draw top frosting
+    for (int i = 0; i < depth; i++) {
+      System.out.print(" ".repeat(depth - i));
+      System.out.print("/");
+      System.out.print("~".repeat(width));
+      System.out.println("/");
+    }
+
+    // draw body layers
+    for (int i = 0; i < layers; i++) {
+      System.out.print(" ".repeat(depth - 1));
+      System.out.print("|");
+      System.out.print("=".repeat(width));
+      System.out.print("|");
+      System.out.println("/".repeat(i % (depth - 1) + 1));
+    }
+
+    // draw base
+    for (int i = depth; i > 0; i--) {
+      System.out.print(" ".repeat(depth - i + 1));
+      System.out.print("\\");
+      System.out.print("=".repeat(width));
+      System.out.println("\\");
+    }
+  }
+
 }
