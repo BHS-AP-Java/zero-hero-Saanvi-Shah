@@ -210,10 +210,8 @@ public class Cake {
       System.out.print("       |");
       for (int i = 0; i < 21; i++) {
         // alternate between forward and back slashes
-        if (i % 2 == 0)
-          System.out.print("/");
-        else
-          System.out.print("\\");
+        if (i % 2 == 0) System.out.print("/");
+        else System.out.print("\\");
       }
       System.out.println("|");
 
@@ -228,10 +226,8 @@ public class Cake {
       // middle layer bottom zigzag
       System.out.print("   |   |");
       for (int i = 0; i < 21; i++) {
-        if (i % 2 == 0)
-          System.out.print("/");
-        else
-          System.out.print("\\");
+        if (i % 2 == 0) System.out.print("/");
+        else System.out.print("\\");
       }
       System.out.println("|   |");
 
@@ -245,10 +241,8 @@ public class Cake {
       // bottom layer top zigzag decoration
       System.out.print(" |");
       for (int i = 0; i < baseWidth - 2; i++) {
-        if (i % 2 == 0)
-          System.out.print("/");
-        else
-          System.out.print("\\");
+        if (i % 2 == 0) System.out.print("/");
+        else System.out.print("\\");
       }
       System.out.println("|");
 
@@ -271,10 +265,8 @@ public class Cake {
       System.out.print(" | ");
       for (int i = 0; i < baseWidth - 4; i++) {
         // alternate waves and spaces
-        if (i % 2 == 0)
-          System.out.print("~");
-        else
-          System.out.print(" ");
+        if (i % 2 == 0) System.out.print("~");
+        else System.out.print(" ");
       }
       System.out.println(" |");
 
