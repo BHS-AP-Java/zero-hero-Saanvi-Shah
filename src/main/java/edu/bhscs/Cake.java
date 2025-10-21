@@ -48,113 +48,344 @@ public class Cake {
 
   // METHODS
 
-  // Prints the plain cake (non-decorated)
+  // showCake() - prints the simple plain cake using loops!
+  // this one is for when the player wants to see their basic cake order
   public void showCake() {
     System.out.println("\nHere is your cake:");
 
-    if (layers == 1) {
-      System.out.println("   |___|");
-    } else if (layers == 2) {
-      System.out.println("   |___|");
-      System.out.println("  |_____|");
-    } else if (layers == 3) {
-      System.out.println("   |___|");
-      System.out.println("  |_____|");
-      System.out.println(" |_______|");
+    // loop through each layer of the cake (top to bottom)
+    for (int layer = 0; layer < layers; layer++) {
+      // math: each layer gets 2 characters wider than the one above it
+      // layer 0 = width 3, layer 1 = width 5, layer 2 = width 7
+      int width = 3 + (layer * 2);
+
+      // calculate leading spaces so cake is centered
+      // top layer has most spaces, bottom has least
+      int spaces = layers - layer - 1;
+
+      // print the spaces to center this layer
+      for (int s = 0; s < spaces; s++) {
+        System.out.print(" ");
+      }
+
+      // print left border
+      System.out.print("|");
+
+      // print the underscores that make up the cake layer
+      for (int w = 0; w < width; w++) {
+        System.out.print("_");
+      }
+
+      // print right border and move to next line
+      System.out.println("|");
     }
 
+    // print description info using the cake's fields
     System.out.println("It is a " + size + " " + flavor + " cake.");
     System.out.println(
         "It has " + layers + " layer(s) and " + frosting + " frosting with " + topping + ".");
     System.out.println("Made with " + flour.quantity + " pounds of " + flour.name + ".");
   }
 
-  // Prints the decorated cake (fancy version depending on layer count)
+  // showDecoratedCake() - prints the fancy decorated cake with loops
+  // the design changes based on how many layers the cake has
   public void showDecoratedCake() {
     System.out.println("\nHere is your decorated cake:");
 
     if (layers == 1) {
-      //  1-LAYER DECORATED CAKE
+      // 1-LAYER CAKE - small and simple with decorative borders
       System.out.println("             ");
-      System.out.println("  ╭┻┻┻┻┻┻┻┻┻╮");
-      System.out.println("  ┃╱╲╱╲╱╲╱╲╱┃");
-      System.out.println("  ┻━━━━━━━━━┻");
+
+      // top border - uses a loop to print 9 vertical bar characters
+      System.out.print("  ╭");
+      for (int i = 0; i < 9; i++) {
+        System.out.print("┻");
+      }
+      System.out.println("╮");
+
+      // frosting pattern - loops to make the zigzag design
+      System.out.print("  ┃");
+      for (int i = 0; i < 5; i++) {
+        System.out.print("╱╲");
+      }
+      System.out.println("┃");
+
+      // bottom border - loops to print the line
+      System.out.print("  ┻");
+      for (int i = 0; i < 9; i++) {
+        System.out.print("━");
+      }
+      System.out.println("┻");
       System.out.println("   ");
       System.out.println("   ");
 
     } else if (layers == 2) {
-      //  2-LAYER DECORATED CAKE
-      System.out.println("   ☆☆☆☆☆☆☆☆");
-      System.out.println("  ╭┻┻┻┻┻┻┻┻┻╮");
-      System.out.println("  ┃╱╲╱╲╱╲╱╲╱┃");
-      System.out.println(" ╭┻━━━━━━━━━┻╮");
-      System.out.println(" ┃╱╲╱╲╱╲╱╲╱╲╱┃");
-      System.out.println(" ┗━━━━━━━━━━━┛");
+      // 2-LAYER CAKE - medium size with stars on top
+
+      // print stars across the top using a loop
+      System.out.print("   ");
+      for (int i = 0; i < 8; i++) {
+        System.out.print("☆");
+      }
+      System.out.println();
+
+      // top layer border
+      System.out.print("  ╭");
+      for (int i = 0; i < 9; i++) {
+        System.out.print("┻");
+      }
+      System.out.println("╮");
+
+      // top layer zigzag frosting pattern
+      System.out.print("  ┃");
+      for (int i = 0; i < 5; i++) {
+        System.out.print("╱╲");
+      }
+      System.out.println("┃");
+
+      // middle divider between the two layers
+      System.out.print(" ╭┻");
+      for (int i = 0; i < 9; i++) {
+        System.out.print("━");
+      }
+      System.out.println("┻╮");
+
+      // bottom layer frosting pattern (slightly wider)
+      System.out.print(" ┃");
+      for (int i = 0; i < 6; i++) {
+        System.out.print("╱╲");
+      }
+      System.out.println("┃");
+
+      // bottom border
+      System.out.print(" ┗");
+      for (int i = 0; i < 11; i++) {
+        System.out.print("━");
+      }
+      System.out.println("┛");
       System.out.println("   ");
       System.out.println("   ");
 
     } else if (layers == 3) {
-      //  3-LAYER DECORATED CAKE
+      // 3-LAYER BIRTHDAY CAKE - the biggest and fanciest!
+      // this one has candles and "Happy Birthday" text
+
+      int baseWidth = 35; // width of the bottom layer
+      int depth = 3; // how many rows to use for 3D effect
+
+      // candles on top (these are hardcoded because they're decorative)
       System.out.println("                 0   0");
       System.out.println("                 |   |");
-      System.out.println("             ____|___|____");
-      System.out.println("          0  |~ ~ ~ ~ ~ ~|   0");
-      System.out.println("          |  |           |   |");
-      System.out.println("       ___|__|___________|___|__");
-      System.out.println("       |/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/|");
-      System.out.println("   0   |       H a p p y       |   0");
-      System.out.println("   |   |/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/|   |");
-      System.out.println("  _|___|_______________________|___|__");
-      System.out.println(" |/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/|");
-      System.out.println(" |                                   |");
-      System.out.println(" |         B i r t h d a y! ! !      |");
-      System.out.println(" | ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ |");
-      System.out.println(" |___________________________________|");
+
+      // top layer roof - print underscores
+      System.out.print("             ");
+      for (int i = 0; i < 13; i++) {
+        System.out.print("_");
+      }
+      System.out.println();
+
+      // top layer with some depth - loop adds multiple rows
+      for (int d = 0; d < depth; d++) {
+        System.out.print("          0  |");
+        // middle row is empty, others have wavy pattern
+        for (int i = 0; i < 11; i++) {
+          System.out.print(d == 1 ? " " : "~");
+        }
+        System.out.println("|   0");
+
+        // add spacing between depth rows (except last one)
+        if (d < depth - 1) {
+          System.out.println("          |  |           |   |");
+        }
+      }
+
+      // middle layer top border
+      System.out.print("       ");
+      for (int i = 0; i < 23; i++) {
+        System.out.print("_");
+      }
+      System.out.println();
+
+      // middle layer zigzag pattern
+      System.out.print("       |");
+      for (int i = 0; i < 21; i++) {
+        // alternate between forward and back slashes
+        if (i % 2 == 0)
+          System.out.print("/");
+        else
+          System.out.print("\\");
+      }
+      System.out.println("|");
+
+      // middle layer with "Happy" text
+      System.out.print("   0   |       ");
+      char[] happy = "H a p p y".toCharArray();
+      for (char c : happy) {
+        System.out.print(c);
+      }
+      System.out.println("       |   0");
+
+      // middle layer bottom zigzag
+      System.out.print("   |   |");
+      for (int i = 0; i < 21; i++) {
+        if (i % 2 == 0)
+          System.out.print("/");
+        else
+          System.out.print("\\");
+      }
+      System.out.println("|   |");
+
+      // bottom layer top border (widest part)
+      System.out.print("  ");
+      for (int i = 0; i < baseWidth; i++) {
+        System.out.print("_");
+      }
+      System.out.println();
+
+      // bottom layer top zigzag decoration
+      System.out.print(" |");
+      for (int i = 0; i < baseWidth - 2; i++) {
+        if (i % 2 == 0)
+          System.out.print("/");
+        else
+          System.out.print("\\");
+      }
+      System.out.println("|");
+
+      // empty row in bottom layer
+      System.out.print(" |");
+      for (int i = 0; i < baseWidth - 2; i++) {
+        System.out.print(" ");
+      }
+      System.out.println("|");
+
+      // "Birthday!!!" text in the bottom layer
+      System.out.print(" |         ");
+      char[] bday = "B i r t h d a y! ! !".toCharArray();
+      for (char c : bday) {
+        System.out.print(c);
+      }
+      System.out.println("      |");
+
+      // wavy decoration line near the bottom
+      System.out.print(" | ");
+      for (int i = 0; i < baseWidth - 4; i++) {
+        // alternate waves and spaces
+        if (i % 2 == 0)
+          System.out.print("~");
+        else
+          System.out.print(" ");
+      }
+      System.out.println(" |");
+
+      // final bottom border
+      System.out.print(" |");
+      for (int i = 0; i < baseWidth - 2; i++) {
+        System.out.print("_");
+      }
+      System.out.println("|");
       System.out.println("   ");
       System.out.println("   ");
     }
 
+    // extra layer indicators at the bottom - nested loops!!
+    // outer loop = how many layer groups to print
+    // inner loops = print the actual patterns
     for (int i = 0; i < layers; i++) {
-      System.out.println(" |~~~~~~~~~~~~~~~~~~|");
+      // print wavy frosting line
+      System.out.print(" |");
+      for (int j = 0; j < 18; j++) {
+        System.out.print("~");
+      }
+      System.out.println("|");
+
+      // print cake texture lines (number depends on layers)
       for (int j = 0; j < layers; j++) {
-        System.out.println(" |==================|");
+        System.out.print(" |");
+        for (int k = 0; k < 18; k++) {
+          System.out.print("=");
+        }
+        System.out.println("|");
       }
     }
-
-    // System.out.println("\nThis decorated cake is a " + flavor + " flavor cake!");
-    // System.out.println("It has " + frosting + " frosting and " + topping + " on top!");
-    // System.out.println("It is made with " + flour.quantity + " pounds of " + flour.name + ".");
   }
 
+  // drawCake3D() - draws a 3D isometric cake slice using only loops!
+  // this shows all three faces: top, front, and right side
   public static void drawCake3D() {
-    int layers = 5; // number of cake layers
-    int width = 20; // width of cake top
-    int depth = 5; // how "3D" it looks
+    int height = 8; // how tall the cake slice is
+    int width = 16; // width of the front face at the base
+    int depth = 6; // how deep the 3D effect goes
 
-    // draw top frosting
+    // STEP 1: draw the top frosting layer (top face of the slice)
+    // this creates a tapered effect - gets narrower as it goes back
     for (int i = 0; i < depth; i++) {
-      System.out.print(" ".repeat(depth - i));
+      // leading spaces create the 3D perspective
+      for (int s = 0; s < i; s++) {
+        System.out.print(" ");
+      }
+
+      // calculate how wide this line should be
+      // math: each row back loses 2 characters of width
+      int lineWidth = width - (i * 2);
+
+      // left edge of frosting
       System.out.print("/");
-      System.out.print("~".repeat(width));
-      System.out.println("/");
-    }
 
-    // draw body layers
-    for (int i = 0; i < layers; i++) {
-      System.out.print(" ".repeat(depth - 1));
-      System.out.print("|");
-      System.out.print("=".repeat(width));
-      System.out.print("|");
-      System.out.println("/".repeat(i % (depth - 1) + 1));
-    }
+      // wavy frosting texture
+      for (int w = 0; w < lineWidth; w++) {
+        System.out.print("~");
+      }
 
-    // draw base
-    for (int i = depth; i > 0; i--) {
-      System.out.print(" ".repeat(depth - i + 1));
-      System.out.print("\\");
-      System.out.print("=".repeat(width));
+      // right edge and newline
       System.out.println("\\");
     }
-  }
 
+    // STEP 2: draw the main cake body (shows three faces!)
+    // each row shows: front face + right side
+    for (int row = 0; row < height; row++) {
+      // spaces to offset for 3D perspective
+      for (int s = 0; s < depth; s++) {
+        System.out.print(" ");
+      }
+
+      // left border of front face
+      System.out.print("|");
+
+      // FRONT FACE: alternate between frosting layers and cake texture
+      for (int col = 0; col < width - (depth * 2); col++) {
+        // every 3rd row is a frosting layer
+        if (row % 3 == 0) {
+          System.out.print("="); // frosting
+        } else {
+          System.out.print("#"); // cake
+        }
+      }
+
+      // right border of front face
+      System.out.print("|");
+
+      // RIGHT SIDE FACE: shows the depth of the slice
+      for (int d = 0; d < depth; d++) {
+        System.out.print("/"); // slashes show the angled side
+      }
+
+      System.out.println();
+    }
+
+    // STEP 3: draw the bottom edge (base of the slice)
+    // this closes off the bottom of the cake
+    for (int s = 0; s < depth; s++) {
+      System.out.print(" ");
+    }
+
+    // bottom front edge with underscores
+    System.out.print("\\");
+    for (int i = 0; i < width - (depth * 2); i++) {
+      System.out.print("_");
+    }
+    System.out.print("/");
+
+    System.out.println();
+  }
 }
