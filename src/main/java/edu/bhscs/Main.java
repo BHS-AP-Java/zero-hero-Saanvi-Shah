@@ -37,7 +37,7 @@ public class Main {
     // Assign character based on user input
     if (choice == 1) {
       name = "Sally";
-      balance = 100;
+      balance = 200;
     } else if (choice == 2) {
       name = "Bob";
       balance = 50;

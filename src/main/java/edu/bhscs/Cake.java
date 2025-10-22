@@ -105,9 +105,10 @@ public class Cake {
 
       // frosting pattern - loops to make the zigzag design
       System.out.print("  ┃");
-      for (int i = 0; i < 5; i++) {
+      for (int i = 0; i < 4; i++) {
         System.out.print("╱╲");
       }
+      System.out.print("╱");
       System.out.println("┃");
 
       // bottom border - loops to print the line
@@ -138,9 +139,10 @@ public class Cake {
 
       // top layer zigzag frosting pattern
       System.out.print("  ┃");
-      for (int i = 0; i < 5; i++) {
+      for (int i = 0; i < 4; i++) {
         System.out.print("╱╲");
       }
+      System.out.print("╱");
       System.out.println("┃");
 
       // middle divider between the two layers
@@ -152,9 +154,10 @@ public class Cake {
 
       // bottom layer frosting pattern (slightly wider)
       System.out.print(" ┃");
-      for (int i = 0; i < 6; i++) {
+      for (int i = 0; i < 5; i++) {
         System.out.print("╱╲");
       }
+      System.out.print("╱");
       System.out.println("┃");
 
       // bottom border
