@@ -173,7 +173,7 @@ public class Cake {
       int baseWidth = 35; // width of the bottom layer
       int depth = 3; // how many rows to use for 3D effect
 
-      // candles on top (these are hardcoded because they're decorative)
+      // candles on top (these are decorative)
       System.out.println("                 0   0");
       System.out.println("                 |   |");
 
