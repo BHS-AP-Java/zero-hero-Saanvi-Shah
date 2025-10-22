@@ -48,7 +48,7 @@ public class Cake {
 
   // METHODS
 
-  // showCake() - prints the simple plain cake using loops!
+  // showCake() - prints the simple plain cake using loops
   // this one is for when the player wants to see their basic cake order
   public void showCake() {
     System.out.println("\nHere is your cake:");
