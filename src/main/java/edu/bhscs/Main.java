@@ -19,7 +19,7 @@ public class Main {
     // burger.showBurger();
     // burger.drawBurger();
 
-    System.out.println("Welcome to the Sweet Treats Bake Sale!");
+    System.out.println("\u001B[35m" +	"Welcome to the Sweet Treats Bake Sale!");
     System.out.println("Choose your player:");
 
     // Pre-made characters
@@ -27,7 +27,7 @@ public class Main {
     System.out.println("2. Bob");
     System.out.println("3. Georgina");
 
-    // The Player class now handles the Scanner internally
+    // The Player class now handles the Scanner
     Player player = new Player(); // no Scanner in Main
     int choice = player.askInt("Enter 1, 2, or 3 to choose your character: ");
 
