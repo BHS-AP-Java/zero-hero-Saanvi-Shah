@@ -48,6 +48,59 @@ public class Cake {
     this.flour = new Flour("All-purpose flour", 5);
   }
 
+  // Prints a large ASCII cake/art supplied by the user
+  public void printAsciiCakeArt() {
+    System.out.println("      *                                             *");
+    System.out.println("                                          *");
+    System.out.println("               *");
+    System.out.println("                             *");
+    System.out.println("                                                       *");
+    System.out.println("    *");
+    System.out.println("                                             *");
+    System.out.println("        *");
+    System.out.println("                      *             *");
+    System.out.println("                                                *");
+    System.out.println(" *                                                               *");
+    System.out.println("          *");
+    System.out.println("                          (             )");
+    System.out.println("                  )      (*)           (*)      (");
+    System.out.println("         *       (*)      |             |      (*)");
+    System.out.println("                  |      |~|           |~|      |          *");
+    System.out.println("                 |~|     | |           | |     |~|");
+    System.out.println("                 | |     | |           | |     | |");
+    System.out.println("                ,| |a@@@@| |@@@@@@@@@@@| |@@@@a| |.");
+    System.out.println("           .,a@@@| |@@@@@| |@@@@@@@@@@@| |@@@@@| |@@@@a,.");
+    System.out.println("         ,a@@@@@@| |@@@@@@@@@@@@.@@@@@@@@@@@@@@| |@@@@@@@a,");
+    System.out.println("        a@@@@@@@@@@@@@@@@@@@@@' . `@@@@@@@@@@@@@@@@@@@@@@@@a");
+    System.out.println("        ;`@@@@@@@@@@@@@@@@@@'   .   `@@@@@@@@@@@@@@@@@@@@@';");
+    System.out.println("        ;@@@`@@@@@@@@@@@@@'     .     `@@@@@@@@@@@@@@@@'@@@;");
+    System.out.println("        ;@@@;,.aaaaaaaaaa       .       aaaaa,,aaaaaaa,;@@@;");
+    System.out.println("        ;;@;;;;@@@@@@@@;@      @.@      ;@@@;;;@@@@@@;;;;@@;");
+    System.out.println("        ;;;;;;;@@@@;@@;;@    @@ . @@    ;;@;;;;@@;@@@;;;;;;;");
+    System.out.println("        ;;;;;;;;@@;;;;;;;  @@   .   @@  ;;;;;;;;;;;@@;;;;@;;");
+    System.out.println("        ;;;;;;;;;;;;;;;;;@@     .     @@;;;;;;;;;;;;;;;;@@@;");
+    System.out.println("    ,%%%;;;;;;;;@;;;;;;;;       .       ;;;;;;;;;;;;;;;;@@;;%%%,");
+    System.out.println(" .%%%%%%;;;;;;;@@;;;;;;;;     ,%%%,     ;;;;;;;;;;;;;;;;;;;;%%%%%%,");
+    System.out.println(".%%%%%%%;;;;;;;@@;;;;;;;;   ,%%%%%%%,   ;;;;;;;;;;;;;;;;;;;;%%%%%%%,");
+    System.out.println("%%%%%%%%`;;;;;;;;;;;;;;;;  %%%%%%%%%%%  ;;;;;;;;;;;;;;;;;;;'%%%%%%%%");
+    System.out.println("%%%%%%%%%%%%`;;;;;;;;;;;;,%%%%%%%%%%%%%,;;;;;;;;;;;;;;;'%%%%%%%%%%%%");
+    System.out.println("`%%%%%%%%%%%%%%%%%,,,,,,,%%%%%%%%%%%%%%%,,,,,,,%%%%%%%%%%%%%%%%%%%%'");
+    System.out.println("  `%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%'");
+    System.out.println("      `%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%'");
+    System.out.println(
+        "             \"\"\"\"\"\"\"\"\"\"\"\"\"\"\",,,,,,,,,'\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"");
+    System.out.println("                            `%%%%%%%'");
+    System.out.println("                             `%%%%%'");
+    System.out.println("                               %%%     Susie Oviatt");
+    System.out.println("                              %%%%%");
+    System.out.println("                           .,%%%%%%%,.");
+    System.out.println("                      ,%%%%%%%%%%%%%%%%%%%,");
+    System.out.println("------------------------------------------------");
+    System.out.println("Thank you for visiting https://asciiart.website/");
+    System.out.println("This ASCII pic can be found at");
+    System.out.println("https://asciiart.website/art/4850");
+  }
+
   // Alternate constructor
   public Cake(String flavor, Flour f) {
     this.size = "medium";
@@ -127,8 +180,14 @@ public class Cake {
       System.out.print("╱");
       System.out.print(RESET + "┃");
       System.out.println();
-
       // bottom border - loops to print the line
+      System.out.print("  ┻" + frostingColor);
+      for (int i = 0; i < 9; i++) {
+        System.out.print("━");
+      }
+      System.out.println(RESET + "┻");
+      System.out.println("   ");
+      System.out.println("   ");
       System.out.print("  ┻" + frostingColor);
       for (int i = 0; i < 9; i++) {
         System.out.print("━");
