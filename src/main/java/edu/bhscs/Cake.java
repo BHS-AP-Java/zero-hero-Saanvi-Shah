@@ -20,19 +20,15 @@ package edu.bhscs;
 public class Cake {
   // ANSI Color codes for different cake flavors and frostings
   private static final String RESET = "\u001B[0m";
-  // Cake flavor colors
-  private static final String BROWN = "\u001B[38;5;130m";  // chocolate
-  private static final String WHITE = "\u001B[37m";        // vanilla
-  private static final String RED = "\u001B[31m";          // strawberry
-  private static final String YELLOW = "\u001B[33m";       // lemon
-  private static final String PURPLE = "\u001B[35m";       // rhubarb
-  private static final String BLUE = "\u001B[34m";         // blueberry
-  // Frosting colors
-  private static final String CREAM = "\u001B[38;5;223m";  // buttercream
-  private static final String PINK = "\u001B[38;5;218m";   // strawberry
-  private static final String MINT = "\u001B[38;5;122m";   // mint
-  private static final String CARAMEL = "\u001B[38;5;172m"; // caramel
-  private static final String CHOCOLATE = "\u001B[38;5;95m"; // chocolate frosting
+  // Colors for both cake and frosting
+  private static final String BROWN = "\u001B[38;5;130m"; // chocolate
+  private static final String WHITE = "\u001B[37m"; // vanilla
+  private static final String RED = "\u001B[31m"; // strawberry
+  private static final String YELLOW = "\u001B[33m"; // lemon
+  private static final String PURPLE = "\u001B[35m"; // rhubarb
+  private static final String BLUE = "\u001B[34m"; // blueberry
+  // Special color for candle flames
+  private static final String ORANGE = "\u001B[38;5;208m"; // candle flames
 
   // FIELDS AND PROPERTIES
   String size;
@@ -86,16 +82,18 @@ public class Cake {
 
   private String getColorForFrosting() {
     switch (frosting.toLowerCase()) {
-      case "buttercream":
-        return CREAM;
-      case "strawberry":
-        return PINK;
-      case "mint":
-        return MINT;
-      case "caramel":
-        return CARAMEL;
       case "chocolate":
-        return CHOCOLATE;
+        return BROWN;
+      case "vanilla":
+        return WHITE;
+      case "strawberry":
+        return RED;
+      case "lemon":
+        return YELLOW;
+      case "rhubarb":
+        return PURPLE;
+      case "blueberry":
+        return BLUE;
       default:
         return WHITE;
     }
@@ -180,10 +178,10 @@ public class Cake {
       // 2-LAYER CAKE - medium size with stars on top
       String frostingColor = getColorForFrosting();
 
-      // print stars across the top using a loop (stars stay white)
+      // print stars across the top using a loop (stars are orange like candle flames)
       System.out.print("   ");
       for (int i = 0; i < 8; i++) {
-        System.out.print(WHITE + "☆" + RESET);
+        System.out.print(ORANGE + "☆" + RESET);
       }
       System.out.println();
 
@@ -234,7 +232,7 @@ public class Cake {
       int depth = 3; // how many rows to use for 3D effect
 
       // candles on top (these are decorative)
-      System.out.println("                 0   0");
+      System.out.print("                 " + ORANGE + "0" + WHITE + "   " + ORANGE + "0" + RESET + "\n");
       System.out.println("                 |   |");
 
       // top layer roof - print underscores
@@ -246,12 +244,12 @@ public class Cake {
 
       // top layer with some depth - loop adds multiple rows
       for (int d = 0; d < depth; d++) {
-        System.out.print("          0  |");
+        System.out.print("          " + ORANGE + "0" + RESET + "  |");
         // middle row is empty, others have wavy pattern
         for (int i = 0; i < 11; i++) {
           System.out.print(d == 1 ? " " : "~");
         }
-        System.out.println("|   0");
+        System.out.println("|   " + ORANGE + "0" + RESET);
 
         // add spacing between depth rows (except last one)
         if (d < depth - 1) {
@@ -276,12 +274,12 @@ public class Cake {
       System.out.println("|");
 
       // middle layer with "Happy" text
-      System.out.print("   0   |       ");
+      System.out.print("   " + ORANGE + "0" + RESET + "   |       ");
       char[] happy = "H a p p y".toCharArray();
       for (char c : happy) {
         System.out.print(c);
       }
-      System.out.println("       |   0");
+      System.out.println("       |   " + ORANGE + "0" + RESET);
 
       // middle layer bottom zigzag
       System.out.print("   |   |");
