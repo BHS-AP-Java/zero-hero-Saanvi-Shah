@@ -19,7 +19,7 @@ public class Main {
     // burger.showBurger();
     // burger.drawBurger();
 
-    System.out.println("\u001B[35m" +	"Welcome to the Sweet Treats Bake Sale!");
+    System.out.println("Welcome to the Sweet Treats Bake Sale!");
     System.out.println("Choose your player:");
 
     // Pre-made characters

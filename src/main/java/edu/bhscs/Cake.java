@@ -18,6 +18,22 @@
 package edu.bhscs;
 
 public class Cake {
+  // ANSI Color codes for different cake flavors and frostings
+  private static final String RESET = "\u001B[0m";
+  // Cake flavor colors
+  private static final String BROWN = "\u001B[38;5;130m";  // chocolate
+  private static final String WHITE = "\u001B[37m";        // vanilla
+  private static final String RED = "\u001B[31m";          // strawberry
+  private static final String YELLOW = "\u001B[33m";       // lemon
+  private static final String PURPLE = "\u001B[35m";       // rhubarb
+  private static final String BLUE = "\u001B[34m";         // blueberry
+  // Frosting colors
+  private static final String CREAM = "\u001B[38;5;223m";  // buttercream
+  private static final String PINK = "\u001B[38;5;218m";   // strawberry
+  private static final String MINT = "\u001B[38;5;122m";   // mint
+  private static final String CARAMEL = "\u001B[38;5;172m"; // caramel
+  private static final String CHOCOLATE = "\u001B[38;5;95m"; // chocolate frosting
+
   // FIELDS AND PROPERTIES
   String size;
   int layers;
@@ -47,6 +63,43 @@ public class Cake {
   }
 
   // METHODS
+
+  // Helper methods to get color codes for flavor and frosting
+  private String getColorForFlavor() {
+    switch (flavor.toLowerCase()) {
+      case "chocolate":
+        return BROWN;
+      case "vanilla":
+        return WHITE;
+      case "strawberry":
+        return RED;
+      case "lemon":
+        return YELLOW;
+      case "rhubarb":
+        return PURPLE;
+      case "blueberry":
+        return BLUE;
+      default:
+        return RESET;
+    }
+  }
+
+  private String getColorForFrosting() {
+    switch (frosting.toLowerCase()) {
+      case "buttercream":
+        return CREAM;
+      case "strawberry":
+        return PINK;
+      case "mint":
+        return MINT;
+      case "caramel":
+        return CARAMEL;
+      case "chocolate":
+        return CHOCOLATE;
+      default:
+        return WHITE;
+    }
+  }
 
   // showCake() - prints the simple plain cake using loops
   // this one is for when the player wants to see their basic cake order
@@ -96,76 +149,80 @@ public class Cake {
       // 1-LAYER CAKE - small and simple with decorative borders
       System.out.println("             ");
 
+      String frostingColor = getColorForFrosting();
+
       // top border - uses a loop to print 9 vertical bar characters
-      System.out.print("  ╭");
+      System.out.print("  ╭" + frostingColor);
       for (int i = 0; i < 9; i++) {
         System.out.print("┻");
       }
-      System.out.println("╮");
+      System.out.println(RESET + "╮");
 
       // frosting pattern - loops to make the zigzag design
-      System.out.print("  ┃");
+      System.out.print("  ┃" + frostingColor);
       for (int i = 0; i < 4; i++) {
         System.out.print("╱╲");
       }
       System.out.print("╱");
-      System.out.println("┃");
+      System.out.print(RESET + "┃");
+      System.out.println();
 
       // bottom border - loops to print the line
-      System.out.print("  ┻");
+      System.out.print("  ┻" + frostingColor);
       for (int i = 0; i < 9; i++) {
         System.out.print("━");
       }
-      System.out.println("┻");
+      System.out.println(RESET + "┻");
       System.out.println("   ");
       System.out.println("   ");
 
     } else if (layers == 2) {
       // 2-LAYER CAKE - medium size with stars on top
+      String frostingColor = getColorForFrosting();
 
-      // print stars across the top using a loop
+      // print stars across the top using a loop (stars stay white)
       System.out.print("   ");
       for (int i = 0; i < 8; i++) {
-        System.out.print("☆");
+        System.out.print(WHITE + "☆" + RESET);
       }
       System.out.println();
 
       // top layer border
-      System.out.print("  ╭");
+      System.out.print("  ╭" + frostingColor);
       for (int i = 0; i < 9; i++) {
         System.out.print("┻");
       }
-      System.out.println("╮");
+      System.out.println(RESET + "╮");
 
       // top layer zigzag frosting pattern
-      System.out.print("  ┃");
+      System.out.print("  ┃" + frostingColor);
       for (int i = 0; i < 4; i++) {
         System.out.print("╱╲");
       }
       System.out.print("╱");
-      System.out.println("┃");
+      System.out.println(RESET + "┃");
 
       // middle divider between the two layers
-      System.out.print(" ╭┻");
+      System.out.print(" ╭┻" + frostingColor);
       for (int i = 0; i < 9; i++) {
         System.out.print("━");
       }
-      System.out.println("┻╮");
+      System.out.println(RESET + "┻╮");
 
       // bottom layer frosting pattern (slightly wider)
-      System.out.print(" ┃");
+      System.out.print(" ┃" + frostingColor);
       for (int i = 0; i < 5; i++) {
         System.out.print("╱╲");
       }
       System.out.print("╱");
-      System.out.println("┃");
+      System.out.println(RESET + "┃");
 
       // bottom border
-      System.out.print(" ┗");
+      System.out.print(" ┗" + frostingColor);
       for (int i = 0; i < 11; i++) {
         System.out.print("━");
       }
-      System.out.println("┛");
+      System.out.println(RESET + "┛");
       System.out.println("   ");
       System.out.println("   ");
 
@@ -286,21 +343,25 @@ public class Cake {
     // extra layer indicators at the bottom - nested loops!!
     // outer loop = how many layer groups to print
     // inner loops = print the actual patterns
+    String cakeColor = getColorForFlavor();
+    String frostingColor = getColorForFrosting();
     for (int i = 0; i < layers; i++) {
       // print wavy frosting line
-      System.out.print(" |");
+      System.out.print(" |" + frostingColor);
       for (int j = 0; j < 18; j++) {
         System.out.print("~");
       }
-      System.out.println("|");
+      System.out.print(RESET + "|");
+      System.out.println();
 
       // print cake texture lines (number depends on layers)
       for (int j = 0; j < layers; j++) {
-        System.out.print(" |");
+        System.out.print(" |" + cakeColor);
         for (int k = 0; k < 18; k++) {
           System.out.print("=");
         }
-        System.out.println("|");
+        System.out.print(RESET + "|");
+        System.out.println();
       }
     }
   }
