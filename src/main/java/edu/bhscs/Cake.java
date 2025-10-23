@@ -99,44 +99,7 @@ public class Cake {
     }
   }
 
-  // showCake() - prints the simple plain cake using loops
-  // this one is for when the player wants to see their basic cake order
-  public void showCake() {
-    System.out.println("\nHere is your cake:");
-
-    // loop through each layer of the cake (top to bottom)
-    for (int layer = 0; layer < layers; layer++) {
-      // math: each layer gets 2 characters wider than the one above it
-      // layer 0 = width 3, layer 1 = width 5, layer 2 = width 7
-      int width = 3 + (layer * 2);
-
-      // calculate leading spaces so cake is centered
-      // top layer has most spaces, bottom has least
-      int spaces = layers - layer - 1;
-
-      // print the spaces to center this layer
-      for (int s = 0; s < spaces; s++) {
-        System.out.print(" ");
-      }
-
-      // print left border
-      System.out.print("|");
-
-      // print the underscores that make up the cake layer
-      for (int w = 0; w < width; w++) {
-        System.out.print("_");
-      }
-
-      // print right border and move to next line
-      System.out.println("|");
-    }
-
-    // print description info using the cake's fields
-    System.out.println("It is a " + size + " " + flavor + " cake.");
-    System.out.println(
-        "It has " + layers + " layer(s) and " + frosting + " frosting with " + topping + ".");
-    System.out.println("Made with " + flour.quantity + " pounds of " + flour.name + ".");
-  }
+  // NOTE: plain (undecorated) cake display removed — decorated cakes are always used now.
 
   // showDecoratedCake() - prints the fancy decorated cake with loops
   // the design changes based on how many layers the cake has
@@ -232,7 +195,8 @@ public class Cake {
       int depth = 3; // how many rows to use for 3D effect
 
       // candles on top (these are decorative)
-      System.out.print("                 " + ORANGE + "0" + WHITE + "   " + ORANGE + "0" + RESET + "\n");
+      System.out.print(
+          "                 " + ORANGE + "0" + WHITE + "   " + ORANGE + "0" + RESET + "\n");
       System.out.println("                 |   |");
 
       // top layer roof - print underscores

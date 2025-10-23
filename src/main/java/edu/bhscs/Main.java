@@ -29,32 +29,33 @@ public class Main {
 
     // The Player class now handles the Scanner
     Player player = new Player(); // no Scanner in Main
-    int choice = player.askInt("Enter 1, 2, or 3 to choose your character: ");
+    int playerChoice = player.askInt("Enter 1, 2, or 3 to choose your character: ");
 
     String name;
-    int balance;
+    int startingBalance;
 
     // Assign character based on user input
-    if (choice == 1) {
+    if (playerChoice == 1) {
       name = "Sally";
-      balance = 200;
-    } else if (choice == 2) {
+      startingBalance = 200;
+    } else if (playerChoice == 2) {
       name = "Bob";
-      balance = 50;
+      startingBalance = 50;
     } else {
       name = "Georgina";
-      balance = 20;
+      startingBalance = 20;
     }
 
     // Create player, bakery, baker, and PTSA objects
     player.setName(name);
-    player.setBankBalance(balance);
+    player.setBankBalance(startingBalance);
     Bakery bakery = new Bakery("Sweet Treats");
     PTSA ptsa = new PTSA("Bothell High");
     Baker baker = new Baker(player); // teacher's class
     baker.f = new Flour("All-purpose flour", 5);
 
-    System.out.println("\nWelcome, " + name + "! You have $" + balance + " in your bank account.");
+    System.out.println(
+        "\nWelcome, " + name + "! You have $" + startingBalance + " in your bank account.");
 
     boolean keepPlaying = true;
 
@@ -66,21 +67,10 @@ public class Main {
       String flavor =
           player.ask("Choose a cake flavor (chocolate / vanilla / strawberry / lemon / rhubarb): ");
 
-      // Decoration option
-      String decorateChoice =
+      String frosting =
           player.ask(
-              "Would you like it decorated for a $20 upcharge? (Highly recommended) (y/n): ");
-      boolean decorated = decorateChoice.equalsIgnoreCase("y");
-
-      String frosting = "";
-      String topping = "";
-
-      if (decorated) {
-        frosting =
-            player.ask(
-                "Choose frosting (chocolate / vanilla / strawberry / lemon / rhubarb /blueberry): ");
-        topping = player.ask("Choose topping (sprinkles / cherries / candles): ");
-      }
+              "Choose frosting (chocolate / vanilla / strawberry / lemon / rhubarb / blueberry): ");
+      String topping = player.ask("Choose topping (sprinkles / cherries / candles): ");
 
       // Bakery makes the cake
 
@@ -88,8 +78,8 @@ public class Main {
       baker.bakeCake(); // uses teacher's Baker class
       baker.experience++; // baker gains experience after every bake
 
-      // Cake price
-      int price = decorated ? 40 : 20;
+      // Cake price (decorated cake fixed price)
+      int price = 40;
       System.out.println("\nYour cake costs $" + price);
 
       // Check if player has enough money
@@ -114,18 +104,12 @@ public class Main {
           }
         }
 
-        // Show cake visual and details
+        // Show cake visual and details (always decorated)
         System.out.println("\nHere’s your cake:");
-        if (decorated) {
-          cake.showDecoratedCake();
-        } else {
-          cake.showCake();
-        }
+        cake.showDecoratedCake();
 
         System.out.println("\nYou ordered a " + layers + "-layer " + flavor + " cake.");
-        if (decorated) {
-          System.out.println("With " + frosting + " frosting and " + topping + " on top!");
-        }
+        System.out.println("With " + frosting + " frosting and " + topping + " on top!");
 
         System.out.println("Your remaining balance: $" + player.getBankBalance());
         System.out.println("Baker’s total experience: " + baker.experience + " cakes baked.");
