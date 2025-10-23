@@ -35,8 +35,12 @@ public class Baker {
 
   // This method lets the baker bake a cake using the player’s answer
   Cake bakeCake() {
-    String answer = this.p.giveAnswer("What cake do you want?");
-    return new Cake(answer, this.f);
+    // Baking should be simulated by the baker without prompting the player directly here.
+    // The main game flow constructs the Cake object (via Bakery.sellCake) and calls
+    // baker.bakeCake() to simulate the action. For compatibility with other code that
+    // expects a Cake return value, return a simple default cake using the baker's flour.
+    // simulate baking without duplicating bakery messaging
+    return new Cake("vanilla", this.f);
   }
 
   // This method lets the baker accept a job at a store
