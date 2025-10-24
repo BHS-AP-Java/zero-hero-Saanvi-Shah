@@ -107,8 +107,11 @@ public class Main {
         // Show cake visual and details (always decorated)
         System.out.println("\nHere’s your cake:");
         cake.showDecoratedCake();
-        // Also show the large ASCII art preview
-        cake.printAsciiCakeArt();
+        // Only show the large, detailed ASCII art for the 1-layer cake option.
+        // This avoids printing the large art after 2- or 3-layer cakes as requested.
+        if (layers == 1) {
+          cake.printAsciiCakeArt();
+        }
 
         System.out.println("\nYou ordered a " + layers + "-layer " + flavor + " cake.");
         System.out.println("With " + frosting + " frosting and " + topping + " on top!");

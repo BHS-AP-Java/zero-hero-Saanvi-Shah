@@ -50,55 +50,130 @@ public class Cake {
 
   // Prints a large ASCII cake/art supplied by the user
   public void printAsciiCakeArt() {
-    System.out.println("      *                                             *");
-    System.out.println("                                          *");
-    System.out.println("               *");
-    System.out.println("                             *");
-    System.out.println("                                                       *");
-    System.out.println("    *");
-    System.out.println("                                             *");
-    System.out.println("        *");
-    System.out.println("                      *             *");
-    System.out.println("                                                *");
-    System.out.println(" *                                                               *");
-    System.out.println("          *");
-    System.out.println("                          (             )");
-    System.out.println("                  )      (*)           (*)      (");
-    System.out.println("         *       (*)      |             |      (*)");
-    System.out.println("                  |      |~|           |~|      |          *");
-    System.out.println("                 |~|     | |           | |     |~|");
-    System.out.println("                 | |     | |           | |     | |");
-    System.out.println("                ,| |a@@@@| |@@@@@@@@@@@| |@@@@a| |.");
-    System.out.println("           .,a@@@| |@@@@@| |@@@@@@@@@@@| |@@@@@| |@@@@a,.");
-    System.out.println("         ,a@@@@@@| |@@@@@@@@@@@@.@@@@@@@@@@@@@@| |@@@@@@@a,");
-    System.out.println("        a@@@@@@@@@@@@@@@@@@@@@' . `@@@@@@@@@@@@@@@@@@@@@@@@a");
-    System.out.println("        ;`@@@@@@@@@@@@@@@@@@'   .   `@@@@@@@@@@@@@@@@@@@@@';");
-    System.out.println("        ;@@@`@@@@@@@@@@@@@'     .     `@@@@@@@@@@@@@@@@'@@@;");
-    System.out.println("        ;@@@;,.aaaaaaaaaa       .       aaaaa,,aaaaaaa,;@@@;");
-    System.out.println("        ;;@;;;;@@@@@@@@;@      @.@      ;@@@;;;@@@@@@;;;;@@;");
-    System.out.println("        ;;;;;;;@@@@;@@;;@    @@ . @@    ;;@;;;;@@;@@@;;;;;;;");
-    System.out.println("        ;;;;;;;;@@;;;;;;;  @@   .   @@  ;;;;;;;;;;;@@;;;;@;;");
-    System.out.println("        ;;;;;;;;;;;;;;;;;@@     .     @@;;;;;;;;;;;;;;;;@@@;");
-    System.out.println("    ,%%%;;;;;;;;@;;;;;;;;       .       ;;;;;;;;;;;;;;;;@@;;%%%,");
-    System.out.println(" .%%%%%%;;;;;;;@@;;;;;;;;     ,%%%,     ;;;;;;;;;;;;;;;;;;;;%%%%%%,");
-    System.out.println(".%%%%%%%;;;;;;;@@;;;;;;;;   ,%%%%%%%,   ;;;;;;;;;;;;;;;;;;;;%%%%%%%,");
-    System.out.println("%%%%%%%%`;;;;;;;;;;;;;;;;  %%%%%%%%%%%  ;;;;;;;;;;;;;;;;;;;'%%%%%%%%");
-    System.out.println("%%%%%%%%%%%%`;;;;;;;;;;;;,%%%%%%%%%%%%%,;;;;;;;;;;;;;;;'%%%%%%%%%%%%");
-    System.out.println("`%%%%%%%%%%%%%%%%%,,,,,,,%%%%%%%%%%%%%%%,,,,,,,%%%%%%%%%%%%%%%%%%%%'");
-    System.out.println("  `%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%'");
-    System.out.println("      `%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%'");
-    System.out.println(
-        "             \"\"\"\"\"\"\"\"\"\"\"\"\"\"\",,,,,,,,,'\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"");
-    System.out.println("                            `%%%%%%%'");
-    System.out.println("                             `%%%%%'");
-    System.out.println("                               %%%     Susie Oviatt");
-    System.out.println("                              %%%%%");
-    System.out.println("                           .,%%%%%%%,.");
-    System.out.println("                      ,%%%%%%%%%%%%%%%%%%%,");
-    System.out.println("------------------------------------------------");
-    System.out.println("Thank you for visiting https://asciiart.website/");
-    System.out.println("This ASCII pic can be found at");
-    System.out.println("https://asciiart.website/art/4850");
+    // We'll render the original 3D ASCII cake as closely as possible by iterating
+    // over a stored template of the original lines (minus the decorative star
+    // block at the very top and minus the attribution text at the bottom).
+    //
+    // Coloring rules (per user):
+    //  - '@' characters => frosting color (use selected frosting)
+    //  - '*' and parentheses '(' and ')' => flame color (orange)
+    //  - '%' characters => cake stand (white)
+    //  - '|' characters => candle stems (white)
+    //  - spaces => printed as-is
+    //  - all other non-space characters => cake color (selected flavor)
+
+    String cakeColor = getColorForFlavor();
+    String frostingColor = getColorForFrosting();
+    String white = WHITE;
+    String orange = ORANGE;
+
+    // Original art lines (trimmed: removed top decorative star block and removed
+    // attribution lines like the artist name and website). We iterate this array
+    // and print each character with the appropriate color mapping using nested
+    // loops so it's programmatic (not a block of System.out.println calls).
+    String[] art =
+        new String[] {
+          "                          (             )",
+          "                  )      (*)           (*)      (",
+          "         *       (*)      |             |      (*)",
+          "                  |      |~|           |~|      |          *",
+          "                 |~|     | |           | |     |~|",
+          "                 | |     | |           | |     | |",
+          "                ,| |a@@@@| |@@@@@@@@@@@| |@@@@a| |.",
+          "           .,a@@@| |@@@@@| |@@@@@@@@@@@| |@@@@@| |@@@@a,.",
+          "         ,a@@@@@@| |@@@@@@@@@@@@.@@@@@@@@@@@@@@| |@@@@@@@a,",
+          "        a@@@@@@@@@@@@@@@@@@@@@' . `@@@@@@@@@@@@@@@@@@@@@@@@a",
+          "        ;`@@@@@@@@@@@@@@@@@@'   .   `@@@@@@@@@@@@@@@@@@@@@';",
+          "        ;@@@`@@@@@@@@@@@@@'     .     `@@@@@@@@@@@@@@@@'@@@;",
+          "        ;@@@;,.aaaaaaaaaa       .       aaaaa,,aaaaaaa,;@@@;",
+          "        ;;@;;;;@@@@@@@@;@      @.@      ;@@@;;;@@@@@@;;;;@@;",
+          "        ;;;;;;;@@@@;@@;;@    @@ . @@    ;;@;;;;@@;@@@;;;;;;;",
+          "        ;;;;;;;;@@;;;;;;;  @@   .   @@  ;;;;;;;;;;;@@;;;;@;;",
+          "        ;;;;;;;;;;;;;;;;;@@     .     @@;;;;;;;;;;;;;;;;@@@;",
+          "    ,%%%;;;;;;;;@;;;;;;;;       .       ;;;;;;;;;;;;;;;;@@;;%%%,",
+          " .%%%%%%;;;;;;;@@;;;;;;;;     ,%%%,     ;;;;;;;;;;;;;;;;;;;;%%%%%%,",
+          ".%%%%%%%;;;;;;;@@;;;;;;;;   ,%%%%%%%,   ;;;;;;;;;;;;;;;;;;;;%%%%%%%,",
+          "%%%%%%%%`;;;;;;;;;;;;;;;;  %%%%%%%%%%%  ;;;;;;;;;;;;;;;;;;;'%%%%%%%%",
+          "%%%%%%%%%%%%`;;;;;;;;;;;;,%%%%%%%%%%%%%,;;;;;;;;;;;;;;;'%%%%%%%%%%%%",
+          "`%%%%%%%%%%%%%%%%%,,,,,,,%%%%%%%%%%%%%%%,,,,,,,%%%%%%%%%%%%%%%%%%%%'",
+          "  `%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%'",
+          "      `%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%'",
+          "                            `%%%%%%%'",
+          "                             `%%%%%'"
+        };
+
+    // Build the tricky quote/comma line programmatically to avoid literal-escaping
+    // issues with many double quotes in a row.
+    String quoteLine;
+    {
+      StringBuilder sb = new StringBuilder();
+      sb.append("             ");
+      for (int q = 0; q < 15; q++) sb.append('"');
+      sb.append(",,,,,,,,,'");
+      for (int q = 0; q < 15; q++) sb.append('"');
+      quoteLine = sb.toString();
+    }
+
+    // Print all art lines except the last two, then print the constructed quote line,
+    // then print the final two lines. This preserves the visual order near the bottom
+    // while avoiding a problematic heavy-quote literal.
+    int limit = Math.max(0, art.length - 2);
+    for (int idx = 0; idx < limit; idx++) {
+      String line = art[idx];
+      for (int i = 0; i < line.length(); i++) {
+        char ch = line.charAt(i);
+        if (ch == ' ') {
+          System.out.print(' ');
+        } else if (ch == '@') {
+          System.out.print(frostingColor + ch + RESET);
+        } else if (ch == '*' || ch == '(' || ch == ')') {
+          System.out.print(orange + ch + RESET);
+        } else if (ch == '%' || ch == '`') {
+          System.out.print(white + ch + RESET);
+        } else if (ch == '|') {
+          System.out.print(white + ch + RESET);
+        } else {
+          System.out.print(cakeColor + ch + RESET);
+        }
+      }
+      System.out.println();
+    }
+
+    // print our constructed quote/comma line
+    for (int i = 0; i < quoteLine.length(); i++) {
+      char ch = quoteLine.charAt(i);
+      if (ch == ' ') System.out.print(' ');
+      else if (ch == '"') System.out.print(cakeColor + ch + RESET);
+      else if (ch == ',') System.out.print(cakeColor + ch + RESET);
+      else if (ch == '\'') System.out.print(cakeColor + ch + RESET);
+      else System.out.print(cakeColor + ch + RESET);
+    }
+    System.out.println();
+
+    // print the final two lines from the art array (if present)
+    for (int idx = art.length - 2; idx < art.length; idx++) {
+      if (idx < 0 || idx >= art.length) continue;
+      String line = art[idx];
+      for (int i = 0; i < line.length(); i++) {
+        char ch = line.charAt(i);
+        if (ch == ' ') {
+          System.out.print(' ');
+        } else if (ch == '@') {
+          System.out.print(frostingColor + ch + RESET);
+        } else if (ch == '*' || ch == '(' || ch == ')') {
+          System.out.print(orange + ch + RESET);
+        } else if (ch == '%' || ch == '`') {
+          System.out.print(white + ch + RESET);
+        } else if (ch == '|') {
+          System.out.print(white + ch + RESET);
+        } else {
+          System.out.print(cakeColor + ch + RESET);
+        }
+      }
+      System.out.println();
+    }
+
+    // End of art. No attribution or external links printed.
   }
 
   // Alternate constructor
