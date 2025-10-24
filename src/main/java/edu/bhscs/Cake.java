@@ -25,7 +25,7 @@ public class Cake {
   private static final String WHITE = "\u001B[37m"; // vanilla
   private static final String RED = "\u001B[31m"; // strawberry
   private static final String YELLOW = "\u001B[33m"; // lemon
-  private static final String PURPLE = "\u001B[35m"; // rhubarb
+  private static final String PURPLE = "\u001B[45m"; // rhubarb
   private static final String BLUE = "\u001B[34m"; // blueberry
   // Special color for candle flames
   private static final String ORANGE = "\u001B[38;5;208m"; // candle flames
