@@ -15,12 +15,19 @@ package edu.bhscs;
 
 public class Baker {
   // FIELDS AND PROPERTIES
+  String name;
   Player p; // the player interacting with the baker
   Flour f; // the flour used by the baker
   Store placeOfWork; // the bakery where the baker works
   int cash; // baker’s total cash on hand
 
   // CONSTRUCTOR
+public Baker(String name){
+    this.name = name;
+
+}
+
+
   Baker(Player p) {
     this.p = p;
   }
