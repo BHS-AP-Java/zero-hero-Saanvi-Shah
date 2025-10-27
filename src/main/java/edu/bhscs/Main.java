@@ -63,7 +63,8 @@ public class Main {
     while (keepPlaying) {
       System.out.println("\n---- New Cake Order ----");
 
-      int layers = player.askInt("How many layers? (1-3): ");
+      // Layers are fixed to 1 for now (multi-layer option removed)
+      int layers = 1;
       String flavor =
           player.ask("Choose a cake flavor (chocolate / vanilla / strawberry / lemon / rhubarb): ");
 

@@ -20,15 +20,17 @@ package edu.bhscs;
 public class Cake {
   // ANSI Color codes for different cake flavors and frostings
   private static final String RESET = "\u001B[0m";
-  // Colors for both cake and frosting
-  private static final String BROWN = "\u001B[38;5;130m"; // chocolate
-  private static final String WHITE = "\u001B[37m"; // vanilla
-  private static final String RED = "\u001B[31m"; // strawberry
-  private static final String YELLOW = "\u001B[33m"; // lemon
-  private static final String PURPLE = "\u001B[45m"; // rhubarb
-  private static final String BLUE = "\u001B[34m"; // blueberry
-  // Special color for candle flames
-  private static final String ORANGE = "\u001B[38;5;208m"; // candle flames
+  // Background colors for both cake and frosting (user requested backgrounds instead of
+  // foregrounds)
+  // Use 48;5;<n> for 256-color background where appropriate, and standard bg codes for others
+  private static final String BROWN = "\u001B[48;5;130m"; // chocolate (background)
+  private static final String WHITE = "\u001B[47m"; // vanilla (background white)
+  private static final String RED = "\u001B[41m"; // strawberry (background red)
+  private static final String YELLOW = "\u001B[43m"; // lemon (background yellow)
+  private static final String PURPLE = "\u001B[45m"; // rhubarb (background magenta/purple)
+  private static final String BLUE = "\u001B[44m"; // blueberry (background blue)
+  // Special background color for candle flames
+  private static final String ORANGE = "\u001B[48;5;208m"; // candle flames (background orange)
 
   // FIELDS AND PROPERTIES
   String size;
@@ -235,230 +237,25 @@ public class Cake {
     System.out.println("\nHere is your decorated cake:");
 
     if (layers == 1) {
-      // 1-LAYER CAKE - small and simple with decorative borders
-      System.out.println("             ");
-
-      String frostingColor = getColorForFrosting();
-
-      // top border - uses a loop to print 9 vertical bar characters
-      System.out.print("  ╭" + frostingColor);
-      for (int i = 0; i < 9; i++) {
-        System.out.print("┻");
-      }
-      System.out.println(RESET + "╮");
-
-      // frosting pattern - loops to make the zigzag design
-      System.out.print("  ┃" + frostingColor);
-      for (int i = 0; i < 4; i++) {
-        System.out.print("╱╲");
-      }
-      System.out.print("╱");
-      System.out.print(RESET + "┃");
-      System.out.println();
-      // bottom border - loops to print the line
-      System.out.print("  ┻" + frostingColor);
-      for (int i = 0; i < 9; i++) {
-        System.out.print("━");
-      }
-      System.out.println(RESET + "┻");
-      System.out.println("   ");
-      System.out.println("   ");
-      System.out.print("  ┻" + frostingColor);
-      for (int i = 0; i < 9; i++) {
-        System.out.print("━");
-      }
-      System.out.println(RESET + "┻");
-      System.out.println("   ");
-      System.out.println("   ");
-
+      // 3D slice output suppressed per user request — no large ASCII art printed here.
+      // If you want a small inline indicator, enable the line below.
+      // System.out.println("[single-layer cake (art suppressed)]");
     } else if (layers == 2) {
-      // 2-LAYER CAKE - medium size with stars on top
+      // 2-LAYER CAKE - Commented out for now
+      /*
       String frostingColor = getColorForFrosting();
-
-      // print stars across the top using a loop (stars are orange like candle flames)
-      System.out.print("   ");
-      for (int i = 0; i < 8; i++) {
-        System.out.print(ORANGE + "☆" + RESET);
-      }
-      System.out.println();
-
-      // top layer border
-      System.out.print("  ╭" + frostingColor);
-      for (int i = 0; i < 9; i++) {
-        System.out.print("┻");
-      }
-      System.out.println(RESET + "╮");
-
-      // top layer zigzag frosting pattern
-      System.out.print("  ┃" + frostingColor);
-      for (int i = 0; i < 4; i++) {
-        System.out.print("╱╲");
-      }
-      System.out.print("╱");
-      System.out.println(RESET + "┃");
-
-      // middle divider between the two layers
-      System.out.print(" ╭┻" + frostingColor);
-      for (int i = 0; i < 9; i++) {
-        System.out.print("━");
-      }
-      System.out.println(RESET + "┻╮");
-
-      // bottom layer frosting pattern (slightly wider)
-      System.out.print(" ┃" + frostingColor);
-      for (int i = 0; i < 5; i++) {
-        System.out.print("╱╲");
-      }
-      System.out.print("╱");
-      System.out.println(RESET + "┃");
-
-      // bottom border
-      System.out.print(" ┗" + frostingColor);
-      for (int i = 0; i < 11; i++) {
-        System.out.print("━");
-      }
-      System.out.println(RESET + "┛");
-      System.out.println("   ");
-      System.out.println("   ");
+      // ... 2-layer cake art code removed ...
+      */
+      // 3D slice suppressed for multi-layer output as well.
 
     } else if (layers == 3) {
-      // 3-LAYER BIRTHDAY CAKE - the biggest and fanciest!
-      // this one has candles and "Happy Birthday" text
-
-      int baseWidth = 35; // width of the bottom layer
-      int depth = 3; // how many rows to use for 3D effect
-
-      // candles on top (these are decorative)
-      System.out.print(
-          "                 " + ORANGE + "0" + WHITE + "   " + ORANGE + "0" + RESET + "\n");
-      System.out.println("                 |   |");
-
-      // top layer roof - print underscores
-      System.out.print("             ");
-      for (int i = 0; i < 13; i++) {
-        System.out.print("_");
-      }
-      System.out.println();
-
-      // top layer with some depth - loop adds multiple rows
-      for (int d = 0; d < depth; d++) {
-        System.out.print("          " + ORANGE + "0" + RESET + "  |");
-        // middle row is empty, others have wavy pattern
-        for (int i = 0; i < 11; i++) {
-          System.out.print(d == 1 ? " " : "~");
-        }
-        System.out.println("|   " + ORANGE + "0" + RESET);
-
-        // add spacing between depth rows (except last one)
-        if (d < depth - 1) {
-          System.out.println("          |  |           |   |");
-        }
-      }
-
-      // middle layer top border
-      System.out.print("       ");
-      for (int i = 0; i < 23; i++) {
-        System.out.print("_");
-      }
-      System.out.println();
-
-      // middle layer zigzag pattern
-      System.out.print("       |");
-      for (int i = 0; i < 21; i++) {
-        // alternate between forward and back slashes
-        if (i % 2 == 0) System.out.print("/");
-        else System.out.print("\\");
-      }
-      System.out.println("|");
-
-      // middle layer with "Happy" text
-      System.out.print("   " + ORANGE + "0" + RESET + "   |       ");
-      char[] happy = "H a p p y".toCharArray();
-      for (char c : happy) {
-        System.out.print(c);
-      }
-      System.out.println("       |   " + ORANGE + "0" + RESET);
-
-      // middle layer bottom zigzag
-      System.out.print("   |   |");
-      for (int i = 0; i < 21; i++) {
-        if (i % 2 == 0) System.out.print("/");
-        else System.out.print("\\");
-      }
-      System.out.println("|   |");
-
-      // bottom layer top border (widest part)
-      System.out.print("  ");
-      for (int i = 0; i < baseWidth; i++) {
-        System.out.print("_");
-      }
-      System.out.println();
-
-      // bottom layer top zigzag decoration
-      System.out.print(" |");
-      for (int i = 0; i < baseWidth - 2; i++) {
-        if (i % 2 == 0) System.out.print("/");
-        else System.out.print("\\");
-      }
-      System.out.println("|");
-
-      // empty row in bottom layer
-      System.out.print(" |");
-      for (int i = 0; i < baseWidth - 2; i++) {
-        System.out.print(" ");
-      }
-      System.out.println("|");
-
-      // "Birthday!!!" text in the bottom layer
-      System.out.print(" |         ");
-      char[] bday = "B i r t h d a y! ! !".toCharArray();
-      for (char c : bday) {
-        System.out.print(c);
-      }
-      System.out.println("      |");
-
-      // wavy decoration line near the bottom
-      System.out.print(" | ");
-      for (int i = 0; i < baseWidth - 4; i++) {
-        // alternate waves and spaces
-        if (i % 2 == 0) System.out.print("~");
-        else System.out.print(" ");
-      }
-      System.out.println(" |");
-
-      // final bottom border
-      System.out.print(" |");
-      for (int i = 0; i < baseWidth - 2; i++) {
-        System.out.print("_");
-      }
-      System.out.println("|");
-      System.out.println("   ");
-      System.out.println("   ");
-    }
-
-    // extra layer indicators at the bottom - nested loops!!
-    // outer loop = how many layer groups to print
-    // inner loops = print the actual patterns
-    String cakeColor = getColorForFlavor();
-    String frostingColor = getColorForFrosting();
-    for (int i = 0; i < layers; i++) {
-      // print wavy frosting line
-      System.out.print(" |" + frostingColor);
-      for (int j = 0; j < 18; j++) {
-        System.out.print("~");
-      }
-      System.out.print(RESET + "|");
-      System.out.println();
-
-      // print cake texture lines (number depends on layers)
-      for (int j = 0; j < layers; j++) {
-        System.out.print(" |" + cakeColor);
-        for (int k = 0; k < 18; k++) {
-          System.out.print("=");
-        }
-        System.out.print(RESET + "|");
-        System.out.println();
-      }
+      // 3-LAYER CAKE - Commented out for now
+      /*
+      int baseWidth = 35;
+      int depth = 3;
+      // ... 3-layer cake art code removed ...
+      */
+      // 3D slice suppressed for multi-layer output as well.
     }
   }
 
