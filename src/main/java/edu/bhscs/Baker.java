@@ -5,17 +5,16 @@
 
 /*
  * DESCRIPTION: The Baker class represents the person who bakes cakes in the game. It uses the
- * Player object to get user input and can interact with the Store, Cake, and Customer.
- * INPUT: Player responses and orders from the game.
- *OUTPUT: Messages describing the baker’s actions, cake baking progress, and experience.
- * EDGE CASES: - Player doesn’t give valid input for cake type - Baker works without a store
- * assigned
+ * Player object to get user input and can interact with the Store, Cake, and Customer. INPUT:
+ * Player responses and orders from the game. OUTPUT: Messages describing the baker’s actions, cake
+ * baking progress, and experience. EDGE CASES: - Player doesn’t give valid input for cake type -
+ * Baker works without a store assigned
  */
 
 package edu.bhscs;
 
 public class Baker {
-  //  FIELDS AND PROPERTIES
+  // FIELDS AND PROPERTIES
   Player p; // the player interacting with the baker
   Flour f; // the flour used by the baker
   Store placeOfWork; // the bakery where the baker works

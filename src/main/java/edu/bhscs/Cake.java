@@ -57,12 +57,12 @@ public class Cake {
     // block at the very top and minus the attribution text at the bottom).
     //
     // Coloring rules (per user):
-    //  - '@' characters => frosting color (use selected frosting)
-    //  - '*' and parentheses '(' and ')' => flame color (orange)
-    //  - '%' characters => cake stand (white)
-    //  - '|' characters => candle stems (white)
-    //  - spaces => printed as-is
-    //  - all other non-space characters => cake color (selected flavor)
+    // - '@' characters => frosting color (use selected frosting)
+    // - '*' and parentheses '(' and ')' => flame color (orange)
+    // - '%' characters => cake stand (white)
+    // - '|' characters => candle stems (white)
+    // - spaces => printed as-is
+    // - all other non-space characters => cake color (selected flavor)
 
     String cakeColor = getColorForFlavor();
     String frostingColor = getColorForFrosting();
@@ -243,18 +243,15 @@ public class Cake {
     } else if (layers == 2) {
       // 2-LAYER CAKE - Commented out for now
       /*
-      String frostingColor = getColorForFrosting();
-      // ... 2-layer cake art code removed ...
-      */
+       * String frostingColor = getColorForFrosting(); // ... 2-layer cake art code removed ...
+       */
       // 3D slice suppressed for multi-layer output as well.
 
     } else if (layers == 3) {
       // 3-LAYER CAKE - Commented out for now
       /*
-      int baseWidth = 35;
-      int depth = 3;
-      // ... 3-layer cake art code removed ...
-      */
+       * int baseWidth = 35; int depth = 3; // ... 3-layer cake art code removed ...
+       */
       // 3D slice suppressed for multi-layer output as well.
     }
   }

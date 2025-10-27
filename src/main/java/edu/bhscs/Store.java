@@ -11,7 +11,7 @@
  *
  * OUTPUT: Prints confirmation when the baker takes a job there.
  *
- * EDGE CASES:  Empty or null store names.
+ * EDGE CASES: Empty or null store names.
  */
 
 package edu.bhscs;

@@ -6,10 +6,9 @@
 /*
  * DESCRIPTION: The Player class represents the person playing the bake sale game. It handles all
  * user input (Scanner wrapped inside), stores the player’s info, manages the player’s bank balance,
- * and interacts with other objects like the Baker and PTSA.
- * INPUT: User choices from the terminal (through ask() and askInt()).
- * OUTPUT: Prompts and feedback messages to guide gameplay.
- * EDGE CASES: - Invalid numeric or text input - Bank balance goes below zero
+ * and interacts with other objects like the Baker and PTSA. INPUT: User choices from the terminal
+ * (through ask() and askInt()). OUTPUT: Prompts and feedback messages to guide gameplay. EDGE
+ * CASES: - Invalid numeric or text input - Bank balance goes below zero
  */
 
 package edu.bhscs;
@@ -25,7 +24,7 @@ public class Player implements Customer {
   // Associated objects
   private Bank bank; // bank account object
 
-  //  CONSTRUCTOR
+  // CONSTRUCTOR
   public Player() {
     sc = new Scanner(System.in);
     bank = new Bank(); // starts with default 100 but will be updated later
@@ -72,16 +71,14 @@ public class Player implements Customer {
     return num;
   }
 
-  // This method handles payments — reduces player’s balance
+  // This method handles payments — reduces player's balance through the bank
   public int pay(int price) {
     if (bankBalance >= price) {
-      bankBalance -= price;
-      bank.customerBalance = bankBalance;
-      System.out.println("Payment successful! $" + price + " has been deducted from your account.");
-      System.out.println("Remaining balance: $" + bankBalance);
+      bank.processTransaction(price); // Let the bank handle the transaction
+      bankBalance = bank.getCustomerBalance(); // Update local balance from bank
       return price;
     } else {
-      System.out.println("You don’t have enough money for this purchase!");
+      System.out.println("You don't have enough money for this purchase!");
       return 0;
     }
   }
@@ -95,6 +92,11 @@ public class Player implements Customer {
   // Baker gives the player the cake (also required by Baker class)
   public void takeCake(Cake cake) {
     System.out.println(name + " takes the cake and smiles happily!");
+  }
+
+  // Method to handle PTSA donations
+  public void donateToPTSA(int amount) {
+    bank.depositToPTSA(amount);
   }
 
   // When the game ends, close the scanner
