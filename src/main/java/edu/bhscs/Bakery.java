@@ -34,8 +34,9 @@ public class Bakery {
   }
 
   // sellCake(): creates and returns a new cake with the given specifications
-  public Cake sellCake(String size, int layers, String flavor, String frosting, String topping) {
+  public Cake sellCake(
+      String size, int layers, String flavor, String frosting, String topping, String message) {
     System.out.println(name + " is preparing your cake...");
-    return new Cake(size, layers, flavor, frosting, topping);
+    return new Cake(size, layers, flavor, frosting, topping, message);
   }
 }
