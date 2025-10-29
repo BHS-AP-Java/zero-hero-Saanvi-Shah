@@ -30,7 +30,7 @@ public class Flour {
     this.quantity = weight;
   }
 
-  //  METHODS 
+  //  METHODS
   // goesBad(): called when the flour is expired or too old to use
   public void goesBad() {
     System.out.println("The flour is expired and cannot be used anymore!");

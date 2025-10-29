@@ -20,7 +20,7 @@ package edu.bhscs;
 public class PTSA {
   // FIELDS AND PROPERTIES
   String name;
-  int totalFunds; 
+  int totalFunds;
 
   // CONSTRUCTOR
   public PTSA(String name) {

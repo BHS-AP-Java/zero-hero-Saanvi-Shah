@@ -22,11 +22,9 @@ public class Baker {
   int cash;
 
   // CONSTRUCTOR
-public Baker(String name){
+  public Baker(String name) {
     this.name = name;
-
-}
-
+  }
 
   Baker(Player p) {
     this.p = p;
@@ -47,13 +45,11 @@ public Baker(String name){
     }
   }
 
-  public static void bakes(int cash, String name) {
-
-  }
+  public static void bakes(int cash, String name) {}
 
   // ADDITIONS
   int experience = 0;
-  boolean isCertified = false; 
+  boolean isCertified = false;
 
   // Prints information about the baker
   public void printBakerInfo() {

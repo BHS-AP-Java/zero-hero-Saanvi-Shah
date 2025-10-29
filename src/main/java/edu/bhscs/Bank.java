@@ -50,7 +50,6 @@ public class Bank {
     return customerBalance;
   }
 
-
   public int getPTSABalance() {
     return ptsaBalance;
   }

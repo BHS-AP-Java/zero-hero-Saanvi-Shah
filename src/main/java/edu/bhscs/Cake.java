@@ -144,8 +144,8 @@ public class Cake {
       }
       System.out.println();
     }
-
   }
+
   // Alternate constructor
   public Cake(String flavor, Flour f) {
     this.size = "medium";
@@ -194,6 +194,7 @@ public class Cake {
         return WHITE;
     }
   }
+
   public void showDecoratedCake() {
     System.out.println("\nHere is your decorated cake:");
 
@@ -202,6 +203,7 @@ public class Cake {
     } else if (layers == 3) {
     }
   }
+
   public static void drawCake3D() {
     int height = 8;
     int width = 16;
@@ -247,8 +249,8 @@ public class Cake {
     System.out.println();
   }
 
-    public draw(Table t) {
-     if (t == null) return(t);
+  public draw(Table t) {
+    if (t == null) return (t);
     int legs = t.legs;
     int w = t.width;
 
@@ -259,9 +261,5 @@ public class Cake {
     for (int i = 0; i < 4; i++) {
       pos[i] = 1 + (int) Math.round(i * (double) (w - 3) / 3.0);
     }
-
-
   }
 }
-
-
