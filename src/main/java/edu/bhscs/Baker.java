@@ -16,10 +16,10 @@ package edu.bhscs;
 public class Baker {
   // FIELDS AND PROPERTIES
   String name;
-  Player p; // the player interacting with the baker
-  Flour f; // the flour used by the baker
-  Store placeOfWork; // the bakery where the baker works
-  int cash; // baker’s total cash on hand
+  Player p;
+  Flour f;
+  Store placeOfWork;
+  int cash;
 
   // CONSTRUCTOR
 public Baker(String name){
@@ -33,19 +33,7 @@ public Baker(String name){
   }
 
   // METHODS
-  // This method allows the baker to take a cake order from a customer
-  void takeOrder(int price, Customer c) {
-    cash += c.pay(price);
-    c.takeCake(bakeCake());
-  }
-
-  // This method lets the baker bake a cake using the player’s answer
-  Cake bakeCake() {
-    // Baking should be simulated by the baker without prompting the player directly here.
-    // The main game flow constructs the Cake object (via Bakery.sellCake) and calls
-    // baker.bakeCake() to simulate the action. For compatibility with other code that
-    // expects a Cake return value, return a simple default cake using the baker's flour.
-    // simulate baking without duplicating bakery messaging
+  Cake bakeCake(int cash, String name) {
     return new Cake("vanilla", this.f);
   }
 
@@ -59,9 +47,13 @@ public Baker(String name){
     }
   }
 
+  public static void bakes(int cash, String name) {
+
+  }
+
   // ADDITIONS
-  int experience = 0; // how many cakes the baker has baked
-  boolean isCertified = false; // extra flavor from earlier assignment
+  int experience = 0;
+  boolean isCertified = false; 
 
   // Prints information about the baker
   public void printBakerInfo() {

@@ -46,12 +46,12 @@ public class Burger {
     System.out.println("   ----");
     System.out.println("  /    \\");
 
-    // Patty layers using a loop - minimal keystrokes version
+
     for (int i = 0; i < burgerWeight; i++) {
       System.out.println(" |~~~~~~|");
     }
 
-    // Cheese layer if applicable
+  
     if (cheese) {
       System.out.println(" |[====]|");
     }

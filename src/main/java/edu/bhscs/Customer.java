@@ -15,11 +15,9 @@
 package edu.bhscs;
 
 public interface Customer {
-  // ---------------- METHODS ----------------
+  //  METHODS
 
-  // pay(): the customer pays the given amount and returns how much was paid
   int pay(int price);
 
-  // takeCake(): the customer receives the cake baked by the baker
   void takeCake(Cake cake);
 }

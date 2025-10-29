@@ -18,19 +18,19 @@
 package edu.bhscs;
 
 public class Flour {
-  // ---------------- FIELDS AND PROPERTIES ----------------
+  // FIELDS AND PROPERTIES
   String name = "All-purpose flour"; // the type of flour
   int quantity = 5; // in pounds
   int price = 3; // price per bag in dollars
   int quality = 8; // quality on a scale of 1–10
 
-  // ---------------- CONSTRUCTOR ----------------
+  // CONSTRUCTOR
   public Flour(String name, int weight) {
     this.name = name;
     this.quantity = weight;
   }
 
-  // ---------------- METHODS ----------------
+  //  METHODS 
   // goesBad(): called when the flour is expired or too old to use
   public void goesBad() {
     System.out.println("The flour is expired and cannot be used anymore!");

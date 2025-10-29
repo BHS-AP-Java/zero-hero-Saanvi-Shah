@@ -18,18 +18,17 @@
 package edu.bhscs;
 
 public class Bank {
-  // ---------------- FIELDS AND PROPERTIES ----------------
+  // FIELDS AND PROPERTIES
   int customerBalance = 100; // starting money for the customer
   int ptsaBalance = 0; // total PTSA funds raised
 
-  // ---------------- CONSTRUCTOR ----------------
+  //  CONSTRUCTOR
   public Bank() {
     // default constructor
   }
 
-  // ---------------- METHODS ----------------
+  // METHODS
 
-  // processTransaction(): moves money from customer to PTSA
   public void processTransaction(int amount) {
     if (amount <= 0) {
       System.out.println("Invalid transaction amount!");
@@ -47,17 +46,15 @@ public class Bank {
     }
   }
 
-  // getCustomerBalance(): returns current player money
   public int getCustomerBalance() {
     return customerBalance;
   }
 
-  // getPTSABalance(): returns PTSA total
+
   public int getPTSABalance() {
     return ptsaBalance;
   }
 
-  // depositToPTSA(): adds extra donations (if baker donates directly)
   public void depositToPTSA(int amount) {
     ptsaBalance += amount;
     System.out.println("The PTSA received a donation of $" + amount + "!");

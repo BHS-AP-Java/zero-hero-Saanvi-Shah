@@ -77,10 +77,10 @@ public class Main {
       // Bakery makes the cake
 
       Cake cake = bakery.sellCake("medium", layers, flavor, frosting, topping);
-      baker.bakeCake(); // uses teacher's Baker class
+      baker.bakeCake();
       baker.experience++; // baker gains experience after every bake
 
-      // Cake price (decorated cake fixed price)
+      // Cake price 
       int price = 40;
       System.out.println("\nYour cake costs $" + price);
 

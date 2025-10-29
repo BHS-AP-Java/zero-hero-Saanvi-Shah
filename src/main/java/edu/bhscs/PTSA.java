@@ -19,8 +19,8 @@ package edu.bhscs;
 
 public class PTSA {
   // FIELDS AND PROPERTIES
-  String name; // name of the PTSA (like "Bothell High")
-  int totalFunds; // total money raised through bake sales
+  String name;
+  int totalFunds; 
 
   // CONSTRUCTOR
   public PTSA(String name) {
@@ -29,8 +29,6 @@ public class PTSA {
   }
 
   // METHODS
-
-  // receiveDonation(): called whenever the baker donates
   public void receiveDonation(int amount) {
     if (amount <= 0) {
       System.out.println("Invalid donation amount.");
@@ -42,7 +40,6 @@ public class PTSA {
         name + " PTSA received a donation of $" + amount + ". Total funds: $" + totalFunds);
   }
 
-  // printPTSAInfo(): optional helper to display PTSA summary
   public void printPTSAInfo() {
     System.out.println("\n--- PTSA Info ---");
     System.out.println("PTSA Name: " + name);

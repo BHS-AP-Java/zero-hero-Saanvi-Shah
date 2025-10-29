@@ -16,33 +16,28 @@ package edu.bhscs;
 import java.util.Scanner;
 
 public class Player implements Customer {
-  // FIELDS AND PROPERTIES
-  private String name; // name of the player
-  private int bankBalance; // player’s available money
-  private Scanner sc; // Scanner for user input
 
-  // Associated objects
-  private Bank bank; // bank account object
+  private String name;
+  private int bankBalance;
+  private Scanner sc;
 
-  // CONSTRUCTOR
+  private Bank bank;
+
   public Player() {
     sc = new Scanner(System.in);
-    bank = new Bank(); // starts with default 100 but will be updated later
+    bank = new Bank();
   }
 
   // METHODS
 
-  // This method lets Main set the player’s name after choosing a character
   public void setName(String name) {
     this.name = name;
   }
 
-  // This method returns the player’s name
   public String getName() {
     return name;
   }
 
-  // This method sets the starting bank balance based on chosen character
   public void setBankBalance(int balance) {
     this.bankBalance = balance;
     bank.customerBalance = balance; // sync with the bank object
