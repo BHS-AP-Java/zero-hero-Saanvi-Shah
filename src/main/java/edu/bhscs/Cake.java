@@ -247,8 +247,8 @@ public class Cake {
     System.out.println();
   }
 
-    public void draw(Table t) {
-     if (t == null) return;
+    public draw(Table t) {
+     if (t == null) return(t);
     int legs = t.legs;
     int w = t.width;
 

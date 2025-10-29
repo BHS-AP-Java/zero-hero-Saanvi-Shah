@@ -80,7 +80,7 @@ public class Main {
       baker.bakeCake();
       baker.experience++; // baker gains experience after every bake
 
-      // Cake price 
+      // Cake price
       int price = 40;
       System.out.println("\nYour cake costs $" + price);
 
@@ -106,11 +106,8 @@ public class Main {
           }
         }
 
-        // Show cake visual and details (always decorated)
         System.out.println("\nHere's your cake:");
         cake.showDecoratedCake();
-        // Only show the large, detailed ASCII art for the 1-layer cake option.
-        // This avoids printing the large art after 2- or 3-layer cakes as requested.
         if (layers == 1) {
           cake.printAsciiCakeArt();
         }
