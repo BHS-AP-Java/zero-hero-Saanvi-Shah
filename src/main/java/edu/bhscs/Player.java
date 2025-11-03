@@ -38,60 +38,10 @@ public class Player implements Customer {
     return name;
   }
 
-  public void setBankBalance(int balance) {
-    this.bankBalance = balance;
-    bank.customerBalance = balance; // sync with the bank object
-  }
-
-  // This method returns the player’s current balance
-  public int getBankBalance() {
-    return bankBalance;
-  }
-
   // Wrapper for text input so Main doesn’t need a Scanner
   public String ask(String prompt) {
     System.out.print(prompt);
     return sc.nextLine();
-  }
-
-  // Wrapper for integer input
-  public int askInt(String prompt) {
-    System.out.print(prompt);
-    while (!sc.hasNextInt()) {
-      System.out.print("Please enter a valid number: ");
-      sc.next();
-    }
-    int num = sc.nextInt();
-    sc.nextLine(); // clear newline
-    return num;
-  }
-
-  // This method handles payments — reduces player's balance through the bank
-  public int pay(int price) {
-    if (bankBalance >= price) {
-      bank.processTransaction(price); // Let the bank handle the transaction
-      bankBalance = bank.getCustomerBalance(); // Update local balance from bank
-      return price;
-    } else {
-      System.out.println("You don't have enough money for this purchase!");
-      return 0;
-    }
-  }
-
-  // Baker uses this to ask questions (required by Baker class)
-  public String giveAnswer(String question) {
-    System.out.print(question + " ");
-    return sc.nextLine();
-  }
-
-  // Baker gives the player the cake (also required by Baker class)
-  public void takeCake(Cake cake) {
-    System.out.println(name + " takes the cake and smiles happily!");
-  }
-
-  // Method to handle PTSA donations
-  public void donateToPTSA(int amount) {
-    bank.depositToPTSA(amount);
   }
 
   // When the game ends, close the scanner
