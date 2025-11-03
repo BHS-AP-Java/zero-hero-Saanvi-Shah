@@ -14,9 +14,8 @@ public class App {
   public static void date10_27() {
     Baker bob = new Baker("Bob");
     Table t = new Table(4, 22);
-    Cake bDay = bob.bakes(5, "Suzzzie");
+    Cake bDay = bob.bakes(5, "Suzzie");
     bDay.draw(t);
   }
 }
 
-// for loops or recursion
