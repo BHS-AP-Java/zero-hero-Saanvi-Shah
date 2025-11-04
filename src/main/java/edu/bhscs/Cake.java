@@ -95,10 +95,7 @@ public class Cake {
     }
   }
 
-  // NEW METHOD: Draw the cake centered on top of a table
-  // The cake size is controlled by cakeWidth and cakeHeight fields
-  // The table size is controlled by the Table object's fields
-  // They are totally independent!
+  // METHOD: Draw the cake centered on top of a table
   public void draw(Table t) {
     if (t == null) {
       System.out.println("No table provided!");
@@ -112,12 +109,9 @@ public class Cake {
 
     System.out.println("\n");
 
-    // STEP 1: Draw the cake (centered above where the table will be)
-    // Calculate offset: (table width - cake width) / 2
-    // This tells us how many spaces to add before the cake
     int offset = (tableWidth - cakeWidth) / 2;
 
-    // Top of cake: candle (centered on the cake itself)
+    // Top of cake: candle
     for (int i = 0; i < offset + (cakeWidth / 2); i++) {
       System.out.print(" ");
     }
@@ -313,7 +307,7 @@ public class Cake {
     }
   }
 
-  public static void drawCake3D() {
+  public static void drawCake() {
     int height = 8;
     int width = 16;
     int depth = 6;

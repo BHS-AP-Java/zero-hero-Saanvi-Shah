@@ -7,9 +7,8 @@ package edu.bhscs;
 
 public class Table {
   // FIELDS AND PROPERTIES
-  // These control the table's appearance
-  int legs; // How many legs the table has
-  int width; // How wide the table is (in characters)
+  int legs;
+  int width;
 
   // CONSTRUCTOR
   public Table(int legs, int width) {
@@ -23,7 +22,7 @@ public class Table {
     return legs;
   }
 
-  // Getter method for table width - used to center the cake
+  // Getter method for table width, used to center the cake
   public int getWidth() {
     return width;
   }
