@@ -3,18 +3,6 @@
 // P2
 // This is making the CAKE class
 
-/*
- * DESCRIPTION: The Cake class represents the cake that the bakery makes and sells. It holds details
- * about size, layers, flavor, frosting, and toppings. It can print either a plain cake or a fancy
- * decorated cake based on player choice.
- *
- * INPUT: size, layers, flavor, frosting, topping
- *
- * OUTPUT: A visual ASCII cake and a sentence describing what kind of cake it is.
- *
- * EDGE CASES: - Layers over 3 are capped at 3 - Missing or empty flavor/frosting/topping names
- */
-
 package edu.bhscs;
 
 public class Cake {
@@ -36,6 +24,10 @@ public class Cake {
   String topping;
   Flour flour;
 
+  // Cake dimensions - these control how big the cake looks in ASCII art
+  int cakeWidth;
+  int cakeHeight;
+
   // CONSTRUCTOR
   public Cake(String size, int layers, String flavor, String frosting, String topping) {
     this.size = size;
@@ -44,10 +36,176 @@ public class Cake {
     this.frosting = frosting;
     this.topping = topping;
     this.flour = new Flour("All-purpose flour", 5);
+
+    // Set the cake's physical size for ASCII art
+    this.cakeWidth = 9; // Change this to make the cake wider/narrower
+    this.cakeHeight = 3; // Change this to make the cake taller/shorter
+  }
+
+  // Alternate constructor
+  public Cake(String flavor, Flour f) {
+    this.size = "medium";
+    this.layers = 1;
+    this.flavor = flavor;
+    this.frosting = "buttercream";
+    this.topping = "sprinkles";
+    this.flour = f;
+
+    // Set default cake size
+    this.cakeWidth = 9;
+    this.cakeHeight = 3;
+  }
+
+  // METHODS
+  private String getColorForFlavor() {
+    switch (flavor.toLowerCase()) {
+      case "chocolate":
+        return BROWN;
+      case "vanilla":
+        return WHITE;
+      case "strawberry":
+        return RED;
+      case "lemon":
+        return YELLOW;
+      case "rhubarb":
+        return PURPLE;
+      case "blueberry":
+        return BLUE;
+      default:
+        return RESET;
+    }
+  }
+
+  private String getColorForFrosting() {
+    switch (frosting.toLowerCase()) {
+      case "chocolate":
+        return BROWN;
+      case "vanilla":
+        return WHITE;
+      case "strawberry":
+        return RED;
+      case "lemon":
+        return YELLOW;
+      case "rhubarb":
+        return PURPLE;
+      case "blueberry":
+        return BLUE;
+      default:
+        return WHITE;
+    }
+  }
+
+  // NEW METHOD: Draw the cake centered on top of a table
+  // The cake size is controlled by cakeWidth and cakeHeight fields
+  // The table size is controlled by the Table object's fields
+  // They are totally independent!
+  public void draw(Table t) {
+    if (t == null) {
+      System.out.println("No table provided!");
+      return;
+    }
+
+    // Get table info
+    int tableWidth = t.getWidth();
+    int tableLegs = t.getLegs();
+    int tableHeight = 4; // How tall the legs are
+
+    System.out.println("\n");
+
+    // STEP 1: Draw the cake (centered above where the table will be)
+    // Calculate offset: (table width - cake width) / 2
+    // This tells us how many spaces to add before the cake
+    int offset = (tableWidth - cakeWidth) / 2;
+
+    // Top of cake: candle (centered on the cake itself)
+    for (int i = 0; i < offset + (cakeWidth / 2); i++) {
+      System.out.print(" ");
+    }
+    System.out.println("|");
+
+    // Candle flame
+    for (int i = 0; i < offset + (cakeWidth / 2) - 1; i++) {
+      System.out.print(" ");
+    }
+    System.out.println("\\*/");
+
+    // Top frosting layer of the cake
+    for (int i = 0; i < offset; i++) {
+      System.out.print(" ");
+    }
+    System.out.print(" ");
+    for (int i = 0; i < cakeWidth - 2; i++) {
+      System.out.print("~");
+    }
+    System.out.println(" ");
+
+    // Body of the cake - using a LOOP based on cakeHeight!
+    // Change cakeHeight in the constructor to make the cake taller or shorter
+    for (int row = 0; row < cakeHeight; row++) {
+      // Add offset spaces to center the cake
+      for (int i = 0; i < offset; i++) {
+        System.out.print(" ");
+      }
+
+      // Draw the cake body
+      System.out.print("|");
+      for (int col = 0; col < cakeWidth - 2; col++) {
+        System.out.print("#");
+      }
+      System.out.println("|");
+    }
+
+    // STEP 2: Draw the table top (independent of cake!)
+    // This loop makes the table top using the table's width
+    for (int i = 0; i < tableWidth; i++) {
+      System.out.print("=");
+    }
+    System.out.println();
+
+    // STEP 3: Draw the table legs using the FENCEPOST PROBLEM
+    // Fencepost problem: N legs means N-1 gaps between them
+    // We need to evenly space the legs across the table width
+
+    for (int row = 0; row < tableHeight; row++) {
+      // For each row of the table legs...
+
+      for (int legNum = 0; legNum < tableLegs; legNum++) {
+        // Calculate where THIS leg should be positioned
+        // This formula solves the fencepost problem!
+        int legPosition;
+        if (tableLegs == 1) {
+          // Special case: one leg goes in the middle
+          legPosition = tableWidth / 2;
+        } else {
+          // Evenly space the legs from position 0 to position (width-1)
+          legPosition = legNum * (tableWidth - 1) / (tableLegs - 1);
+        }
+
+        // Print spaces until we reach this leg's position
+        if (legNum == 0) {
+          // First leg: print spaces from the start
+          for (int space = 0; space < legPosition; space++) {
+            System.out.print(" ");
+          }
+        } else {
+          // Other legs: print spaces from the previous leg
+          int previousLegPosition = (legNum - 1) * (tableWidth - 1) / (tableLegs - 1);
+          int gapSize = legPosition - previousLegPosition - 1;
+          for (int space = 0; space < gapSize; space++) {
+            System.out.print(" ");
+          }
+        }
+
+        // Now draw the actual leg
+        System.out.print("|");
+      }
+      System.out.println();
+    }
+
+    System.out.println();
   }
 
   public void printAsciiCakeArt() {
-
     String cakeColor = getColorForFlavor();
     String frostingColor = getColorForFrosting();
     String white = WHITE;
@@ -144,56 +302,8 @@ public class Cake {
       }
       System.out.println();
     }
-
-  }
-  // Alternate constructor
-  public Cake(String flavor, Flour f) {
-    this.size = "medium";
-    this.layers = 1;
-    this.flavor = flavor;
-    this.frosting = "buttercream";
-    this.topping = "sprinkles";
-    this.flour = f;
   }
 
-  // METHODS
-  private String getColorForFlavor() {
-    switch (flavor.toLowerCase()) {
-      case "chocolate":
-        return BROWN;
-      case "vanilla":
-        return WHITE;
-      case "strawberry":
-        return RED;
-      case "lemon":
-        return YELLOW;
-      case "rhubarb":
-        return PURPLE;
-      case "blueberry":
-        return BLUE;
-      default:
-        return RESET;
-    }
-  }
-
-  private String getColorForFrosting() {
-    switch (frosting.toLowerCase()) {
-      case "chocolate":
-        return BROWN;
-      case "vanilla":
-        return WHITE;
-      case "strawberry":
-        return RED;
-      case "lemon":
-        return YELLOW;
-      case "rhubarb":
-        return PURPLE;
-      case "blueberry":
-        return BLUE;
-      default:
-        return WHITE;
-    }
-  }
   public void showDecoratedCake() {
     System.out.println("\nHere is your decorated cake:");
 
@@ -202,6 +312,7 @@ public class Cake {
     } else if (layers == 3) {
     }
   }
+
   public static void drawCake3D() {
     int height = 8;
     int width = 16;
@@ -246,22 +357,4 @@ public class Cake {
     System.out.print("/");
     System.out.println();
   }
-
-    public draw(Table t) {
-     if (t == null) return(t);
-    int legs = t.legs;
-    int w = t.width;
-
-    if (legs < 4) legs = 4;
-    if (w < 7) w = 7;
-
-    int[] pos = new int[4];
-    for (int i = 0; i < 4; i++) {
-      pos[i] = 1 + (int) Math.round(i * (double) (w - 3) / 3.0);
-    }
-
-
-  }
 }
-
-

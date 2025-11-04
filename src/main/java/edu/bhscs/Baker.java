@@ -3,14 +3,6 @@
 // P2
 // This is making the Baker class
 
-/*
- * DESCRIPTION: The Baker class represents the person who bakes cakes in the game. It uses the
- * Player object to get user input and can interact with the Store, Cake, and Customer. INPUT:
- * Player responses and orders from the game. OUTPUT: Messages describing the baker’s actions, cake
- * baking progress, and experience. EDGE CASES: - Player doesn’t give valid input for cake type -
- * Baker works without a store assigned
- */
-
 package edu.bhscs;
 
 public class Baker {
@@ -20,20 +12,30 @@ public class Baker {
   Flour f;
   Store placeOfWork;
   int cash;
+  int experience = 0;
+  boolean isCertified = false;
 
   // CONSTRUCTOR
-public Baker(String name){
+  public Baker(String name) {
     this.name = name;
-
-}
-
+    this.f = new Flour("All-purpose flour", 5);
+  }
 
   Baker(Player p) {
     this.p = p;
+    this.f = new Flour("All-purpose flour", 5);
   }
 
   // METHODS
   Cake bakeCake(int cash, String name) {
+    return new Cake("vanilla", this.f);
+  }
+
+  // NEW METHOD: Returns a Cake object for the assignment
+  // This method creates a cake with the specified number of layers
+  // and dedicates it to someone (the name parameter)
+  public Cake bakes(int layers, String name) {
+    System.out.println(this.name + " is baking a " + layers + "-layer cake for " + name + "!");
     return new Cake("vanilla", this.f);
   }
 
@@ -46,14 +48,6 @@ public Baker(String name){
       System.out.println("The baker now works at " + bakery.getName() + "!");
     }
   }
-
-  public static void bakes(int cash, String name) {
-
-  }
-
-  // ADDITIONS
-  int experience = 0;
-  boolean isCertified = false; 
 
   // Prints information about the baker
   public void printBakerInfo() {

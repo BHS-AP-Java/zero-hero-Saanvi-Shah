@@ -3,24 +3,12 @@
 // P2
 // This is making the PTSA class
 
-/*
- * DESCRIPTION: The PTSA class represents the Parent Teacher Student Association that receives money
- * from the bake sale donations. Every time a cake is sold (and the baker decides to donate the
- * money), this class records the amount raised.
- *
- * INPUT: Donation amount (int)
- *
- * OUTPUT: A message showing how much money the PTSA has earned so far.
- *
- * EDGE CASES: - Negative or zero donation amounts.
- */
-
 package edu.bhscs;
 
 public class PTSA {
   // FIELDS AND PROPERTIES
   String name;
-  int totalFunds; 
+  int totalFunds;
 
   // CONSTRUCTOR
   public PTSA(String name) {

@@ -3,22 +3,10 @@
 // Making, Baking, and Buying a Cake
 // 10/07/25
 
-/*
- * DESCRIPTION: This is the main class for my bake sale game. The player chooses a character,
- * orders cakes, and interacts with the baker.
- * INPUT: Character choice, cake options, decoration choice, and decisions if the baker steals.
- * OUTPUT: Messages showing gameplay, cake visuals, PTSA donations, and bank balances.
- * EDGE CASES: - Player runs out of money - Invalid menu input - Player chooses not to decorate cake
- */
-
 package edu.bhscs;
 
 public class Main {
   public static void main(String[] args) {
-    // Burger burger = new Burger("Large", "Sesame", 1, true);
-    // burger.showBurger();
-    // burger.drawBurger();
-
     System.out.println("Welcome to the Sweet Treats Bake Sale!");
     System.out.println("Choose your player:");
 
@@ -27,14 +15,12 @@ public class Main {
     System.out.println("2. Bob");
     System.out.println("3. Georgina");
 
-    // The Player class now handles the Scanner
-    Player player = new Player(); // no Scanner in Main
+    Player player = new Player();
     int playerChoice = player.askInt("Enter 1, 2, or 3 to choose your character: ");
 
     String name;
     int startingBalance;
 
-    // Assign character based on user input
     if (playerChoice == 1) {
       name = "Sally";
       startingBalance = 200;
@@ -46,12 +32,11 @@ public class Main {
       startingBalance = 20;
     }
 
-    // Create player, bakery, baker, and PTSA objects
     player.setName(name);
     player.setBankBalance(startingBalance);
     Bakery bakery = new Bakery("Sweet Treats");
     PTSA ptsa = new PTSA("Bothell High");
-    Baker baker = new Baker(player); // teacher's class
+    Baker baker = new Baker(player);
     baker.f = new Flour("All-purpose flour", 5);
 
     System.out.println(
@@ -59,38 +44,29 @@ public class Main {
 
     boolean keepPlaying = true;
 
-    // LOOP: player can order multiple cakes
     while (keepPlaying) {
       System.out.println("\n---- New Cake Order ----");
 
-      // Layers are fixed to 1 for now (multi-layer option removed)
       int layers = 1;
-      String flavor =
-          player.ask(
-              "Choose a cake flavor (chocolate / vanilla / red velvet / carrot / lemon / strawberry): ");
+      String flavor = player.ask(
+          "Choose a cake flavor (chocolate / vanilla / red velvet / carrot / lemon / strawberry): ");
 
-      String frosting =
-          player.ask(
-              "Choose frosting (chocolate / vanilla / strawberry / lemon / rhubarb / blueberry): ");
+      String frosting = player.ask(
+          "Choose frosting (chocolate / vanilla / strawberry / lemon / rhubarb / blueberry): ");
       String topping = player.ask("Choose topping (sprinkles / cherries / candles / none): ");
 
-      // Bakery makes the cake
-
       Cake cake = bakery.sellCake("medium", layers, flavor, frosting, topping);
-      baker.bakeCake();
-      baker.experience++; // baker gains experience after every bake
+      baker.bakeCake(0, "");
+      baker.experience++;
 
-      // Cake price
       int price = 40;
       System.out.println("\nYour cake costs $" + price);
 
-      // Check if player has enough money
       if (player.getBankBalance() < price) {
         System.out.println("You don't have enough money for this cake!");
       } else {
         player.pay(price);
 
-        // Randomly decide if baker donates or steals
         boolean bakerHonest = Math.random() < 0.5;
         if (bakerHonest) {
           player.donateToPTSA(price);
@@ -119,279 +95,14 @@ public class Main {
         System.out.println("Baker's total experience: " + baker.experience + " cakes baked.");
       }
 
-      // Ask to play again
       String again = player.ask("\nWould you like to order another cake? (y/n): ");
       if (!again.equalsIgnoreCase("y")) {
         keepPlaying = false;
       }
     }
 
-    // Game end
     System.out.println("\nThank you for visiting Sweet Treats Bakery!");
     System.out.println("Final PTSA balance: $" + ptsa.totalFunds);
     System.out.println("Goodbye, " + player.getName() + "!");
   }
 }
-
-// Saving  ASCII art templates as comments for reference
-/*
- *
- *                        (             )
-                  )      (*)           (*)      (
-                 (*)      |             |      (*)
-                  |      |~|           |~|      |
-                 |~|     | |           | |     |~|
-                 | |     | |           | |     | |
-                ,| |a@@@@| |@@@@@@@@@@@| |@@@@a| |.
-           .,a@@@| |@@@@@| |@@@@@@@@@@@| |@@@@@| |@@@@a,.
-         ,a@@@@@@| |@@@@@@@@@@@@.@@@@@@@@@@@@@@| |@@@@@@@a,
-        a@@@@@@@@@@@@@@@@@@@@@':.:@@@@@@@@@@@@@@@@@@@@@@@@a x
-        ;`@@@@@@@@@@@@@@@@@@':::.:::`@@@@@@@@@@@@@@@@@@@@@@';
-        ;@@@`@@@@@@@@@@@@@':::::.::::::@@@@@@@@@@@@@@@@'@@@;
-        ;@@@;,.aaaaaaaaaa:::::::.:::::::aaaaa,,aaaaaaa,;@@@;
-        ;;@;;;;@@@@@@@@;@::::::@.@::::::;@@@;;;@@@@@@;;;;@@;
-        ;;;;;;;@@@@;@@;;@::::@@:.:@@::::;;@;;;;@@;@@@;;;;;;;
-        ;;;;;;;;@@;;;;;;;::@@:::.:::@@::;;;;;;;;;;;@@;;;;@;;
-        ;;;;;;;;;;;;;;;;;@@:::::.:::::@@;;;;;;;;;;;;;;;;@@@;
-    ,%%%;;;;;;;;@;;;;;;;;:::::::.:::::::;;;;;;;;;;;;;;;;@@;;%%%,
- .%%%%%%;;;;;;;@@;;;;;;;;:::::,%%%,:::::;;;;;;;;;;;;;;;;;;;;%%%%%%,
-.%%%%%%%;;;;;;;@@;;;;;;;;:::,%%%%%%%,:::;;;;;;;;;;;;;;;;;;;;%%%%%%%,
-%%%%%%%%`;;;;;;;;;;;;;;;;: %%%%%%%%%%%::;;;;;;;;;;;;;;;;;;;'%%%%%%%%
-%%%%%%%%%%%%`;;;;;;;;;;;;,%%%%%%%%%%%%%,;;;;;;;;;;;;;;;'%%%%%%%%%%%%
-`%%%%%%%%%%%%%%%%%,,,,,,,%%%%%%%%%%%%%%%,,,,,,,%%%%%%%%%%%%%%%%%%%%'
-  `%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%'
-      `%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-                            `%%%%%%%'
-                             `%%%%%'
-                               %%%
-                              %%%%%
-                           .,%%%%%%%,.
-                      ,%%%%%%%%%%%%%%%%%%%,
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                            |              |
-                   |        |              |       |
-                 a@|@@@@@@@@|@@@@@@@@@@@@@@|@@@@@@@|@
-           .,a@@@@@|@@@@@@(   )@@@@@@@@@@(   )@@@@@|@@@@
-         ,a@@@@@@(   )@@@@@@@@@@@@.@@@@@@@@@@@@@@(   )@@a,
-        a@@@@@@@@@@@@@@@@@@@@@':.:@@@@@@@@@@@@@@@@@@@@@@@@a
-        ;`@@@@@@@@@@@@@@@@@@':::.:::`@@@@@@@@@@@@@@@@@@@@@';
-        ;@@@`@@@@@@@@@@@@@':::::.::::::@@@@@@@@@@@@@@@@'@@@;
-        ;@@@;,.aaaaaaaaaa:::::::.:::::::aaaaa,,aaaaaaa,;@@@;
-        ;;@;;;;@@@@@@@@;@::::::@.@::::::;@@@;;;@@@@@@;;;;@@;
-        ;;;;;;;@@@@;@@;;@::::@@:.:@@::::;;@;;;;@@;@@@;;;;;;;
-        ;;;;;;;;@@;;;;;;;::@@:::.:::@@::;;;;;;;;;;;@@;;;;@;;
-        ;;;;;;;;;;;;;;;;;@@:::::.:::::@@;;;;;;;;;;;;;;;;@@@;
-    ,%%%;;;;;;;;@;;;;;;;;:::::::.:::::::;;;;;;;;;;;;;;;;@@;;%%%,
- .%%%%%%;;;;;;;@@;;;;;;;;:::::,%%%,:::::;;;;;;;;;;;;;;;;;;;;%%%%%%,
-.%%%%%%%;;;;;;;@@;;;;;;;;:::,%%%%%%%,:::;;;;;;;;;;;;;;;;;;;;%%%%%%%,
-%%%%%%%%`;;;;;;;;;;;;;;;;: %%%%%%%%%%%: ;;;;;;;;;;;;;;;;;;;'%%%%%%%%
-%%%%%%%%%%%%`;;;;;;;;;;;;,%%%%%%%%%%%%%,;;;;;;;;;;;;;;;'%%%%%%%%%%%%
-`%%%%%%%%%%%%%%%%%,,,,,,,%%%%%%%%%%%%%%%,,,,,,,%%%%%%%%%%%%%%%%%%%%'
-  `%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%'
-      `%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-                            `%%%%%%%'
-                             `%%%%%'
-                               %%%
-                              %%%%%
-                           .,%%%%%%%,.
-                      ,%%%%%%%%%%%%%%%%%%%,
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-            @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-          @@@@@@@@@@@@@@@@@@@@@@@@@.@@@@@@@@@@@@@@@@@@@@@@
-        @@@@@@@@@@@@@@@@@@@@@@ :.:@@@@@@@@@@@@@@@@@@@@@@@@@
-        ;`@@@@@@@@@@@@@@@@@@ :::.:::`@@@@@@@@@@@@@@@@@@@@@@;
-        ;@@@`@@@@@@@@@@@@@ :::::.::::::@@@@@@@@@@@@@@@@'@@@;
-        ;@@@;,.@@@@@@@@@@:::::::.:::::::@@@@@@@@@@@@@@,;@@@;
-        ;;@;;;;@@@@@@@@;@::::::@.@::::::;@@@;;;@@@@@@;;;;@@;
-        ;;;;;;;@@@@;@@;;@::::@@:.:@@::::;;@;;;;@@;@@@;;;;;;;
-        ;;;;;;;;@@;;;;;;;::@@:::.:::@@::;;;;;;;;;;;@@;;;;@;;
-        ;;;;;;;;;;;;;;;;;@@:::::.:::::@@;;;;;;;;;;;;;;;;@@@;
-    ,%%%;;;;;;;;@;;;;;;;;:::::::.:::::::;;;;;;;;;;;;;;;;@@;;%%%
- .%%%%%%;;;;;;;@@;;;;;;;;:::::,%%%,:::::;;;;;;;;;;;;;;;;;;;;%%%%%%
-.%%%%%%%;;;;;;;@@;;;;;;;;:::,%%%%%%%,:::;;;;;;;;;;;;;;;;;;;;%%%%%%%
-%%%%%%%%`;;;;;;;;;;;;;;;;: %%%%%%%%%%%: ;;;;;;;;;;;;;;;;;;;'%%%%%%%%
-%%%%%%%%%%%%`;;;;;;;;;;;;,%%%%%%%%%%%%%,;;;;;;;;;;;;;;;'%%%%%%%%%%%%
-`%%%%%%%%%%%%%%%%%,,,,,,,%%%%%%%%%%%%%%%,,,,,,,%%%%%%%%%%%%%%%%%%%%
-  `%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      `%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-                            `%%%%%%%'
-                             `%%%%%'
-                               %%%
-                              %%%%%
-                           .,%%%%%%%,.
-                      ,%%%%%%%%%%%%%%%%%%%,
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                @@@@@@@@@@@///@@@@@@@@@@@@@@@@@@@@@
-            @@@@@@@@@@@@@@@@@@@@@@@@@///@@@@@@///@@@@@@@
-          @@@@@@@@///@@@@@@@@@@@@@@@.@@@@@@@@@@@@@@@@@@///@
-        @@///@@@@@@@@@@@@@@@@@ :.:@@@@@@@@@@@@@@@@@@@@@@@@@
-        ;`@@@@@@@@@@@@@@@@@@ :::.:::`@@@@@@@@@///@@@@@@@@@@;
-        ;@@@`@@@@@@@///@@@ :::::.::::::@@@@@@@@@@@@@@@@'@@@;
-        ;@@@;,.@@@@@@@@@@:::::::.:::::::@@@@@@@@@@@@@@,;@@@;
-        ;;@;;;;@@@@@@@@;@::::::@.@::::::;@@@;;;@@@@@@;;;;@@;
-        ;;;;;;;@@@@;@@;;@::::@@:.:@@::::;;@;;;;@@;@@@;;;;;;;
-        ;;;;;;;;@@;;;;;;;::@@:::.:::@@::;;;;;;;;;;;@@;;;;@;;
-        ;;;;;;;;;;;;;;;;;@@:::::.:::::@@;;;;;;;;;;;;;;;;@@@;
-    ,%%%;;;;;;;;@;;;;;;;;:::::::.:::::::;;;;;;;;;;;;;;;;@@;;%%%
- .%%%%%%;;;;;;;@@;;;;;;;;:::::,%%%,:::::;;;;;;;;;;;;;;;;;;;;%%%%%%
-.%%%%%%%;;;;;;;@@;;;;;;;;:::,%%%%%%%,:::;;;;;;;;;;;;;;;;;;;;%%%%%%%
-%%%%%%%%`;;;;;;;;;;;;;;;;: %%%%%%%%%%%: ;;;;;;;;;;;;;;;;;;;'%%%%%%%%
-%%%%%%%%%%%%`;;;;;;;;;;;;,%%%%%%%%%%%%%,;;;;;;;;;;;;;;;'%%%%%%%%%%%%
-`%%%%%%%%%%%%%%%%%,,,,,,,%%%%%%%%%%%%%%%,,,,,,,%%%%%%%%%%%%%%%%%%%%
-  `%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      `%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-                            `%%%%%%%'
-                             `%%%%%'
-                               %%%
-                              %%%%%
-                           .,%%%%%%%,.
-                      ,%%%%%%%%%%%%%%%%%%%,
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- */
