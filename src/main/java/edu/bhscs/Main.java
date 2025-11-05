@@ -48,11 +48,13 @@ public class Main {
       System.out.println("\n---- New Cake Order ----");
 
       int layers = 1;
-      String flavor = player.ask(
-          "Choose a cake flavor (chocolate / vanilla / red velvet / carrot / lemon / strawberry): ");
+      String flavor =
+          player.ask(
+              "Choose a cake flavor (chocolate / vanilla / red velvet / carrot / lemon / strawberry): ");
 
-      String frosting = player.ask(
-          "Choose frosting (chocolate / vanilla / strawberry / lemon / rhubarb / blueberry): ");
+      String frosting =
+          player.ask(
+              "Choose frosting (chocolate / vanilla / strawberry / lemon / rhubarb / blueberry): ");
       String topping = player.ask("Choose topping (sprinkles / cherries / candles / none): ");
 
       Cake cake = bakery.sellCake("medium", layers, flavor, frosting, topping);
