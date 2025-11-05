@@ -18,5 +18,4 @@ public class Bakery {
   public String getName() {
     return name;
   }
-
 }

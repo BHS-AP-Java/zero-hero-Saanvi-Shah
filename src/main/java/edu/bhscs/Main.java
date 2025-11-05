@@ -82,8 +82,6 @@ public class Main {
           }
         }
 
-
-
         System.out.println("\nYou ordered a " + layers + "-layer " + flavor + " cake.");
         System.out.println("With " + frosting + " frosting and " + topping + " on top!");
 
