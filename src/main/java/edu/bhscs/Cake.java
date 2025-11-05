@@ -307,28 +307,41 @@ public class Cake {
     }
   }
 
-  public static void drawCake() {
-    int height = 8;
-    int width = 16;
-    int depth = 6;
+
+  public void drawCake() {
+
+    int height = Math.max(10, this.cakeHeight);
+    int width = Math.max(3, this.cakeWidth);
+
+    int depth = Math.max(0, Math.min((width - 1) / 2, this.layers));
+
+
+    int innerWidth = width - (depth * 2);
+    if (innerWidth < 1) {
+      depth = Math.max(0, (width - 1) / 2);
+      innerWidth = width - (depth * 2);
+    }
+
 
     for (int i = 0; i < depth; i++) {
       for (int s = 0; s < i; s++) {
         System.out.print(" ");
       }
-      int lineWidth = width - (i * 2);
+      int lineWidth = Math.max(0, width - (i * 2));
       System.out.print("/");
       for (int w = 0; w < lineWidth; w++) {
         System.out.print("~");
       }
       System.out.println("\\");
     }
+
+    // Draw cake body using height and innerWidth
     for (int row = 0; row < height; row++) {
       for (int s = 0; s < depth; s++) {
         System.out.print(" ");
       }
       System.out.print("|");
-      for (int col = 0; col < width - (depth * 2); col++) {
+      for (int col = 0; col < innerWidth; col++) {
         if (row % 3 == 0) {
           System.out.print("=");
         } else {
@@ -341,14 +354,17 @@ public class Cake {
       }
       System.out.println();
     }
+
+    // Draw bottom of the cake
     for (int s = 0; s < depth; s++) {
       System.out.print(" ");
     }
     System.out.print("\\");
-    for (int i = 0; i < width - (depth * 2); i++) {
+    for (int i = 0; i < innerWidth; i++) {
       System.out.print("_");
     }
     System.out.print("/");
     System.out.println();
   }
+
 }

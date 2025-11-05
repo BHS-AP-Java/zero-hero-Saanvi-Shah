@@ -9,6 +9,7 @@ public class Table {
   // FIELDS AND PROPERTIES
   int legs;
   int width;
+  String leg;
 
   // CONSTRUCTOR
   public Table(int legs, int width) {
@@ -18,6 +19,11 @@ public class Table {
 
   // METHODS
   // Getter method so the Cake class can figure out how to center itself
+
+  public void setLeg(String leg){
+    this.leg = leg;
+  }
+
   public int getLegs() {
     return legs;
   }
@@ -27,3 +33,5 @@ public class Table {
     return width;
   }
 }
+
+
