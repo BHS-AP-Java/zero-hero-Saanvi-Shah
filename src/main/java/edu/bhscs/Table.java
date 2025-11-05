@@ -22,7 +22,7 @@ public class Table {
 
   // Overloaded constructor with default height
   public Table(int legs, int width) {
-    this(legs, width, 4); // Default height is 4
+    this(legs, width, 6); // Default height is 4
   }
 
   // METHODS
@@ -40,7 +40,7 @@ public class Table {
 
   public void drawTable() {
     // Draw the table top
-    for (int i = 0; i < width; i++) {
+    for (int i = 0; i < width + 8; i++) {
       System.out.print("=");
     }
     System.out.println();
@@ -78,8 +78,9 @@ public class Table {
       System.out.println();
     }
     System.out.println();
-  }{
+  }
 
+  {
 
     // Draw the table legs
     for (int row = 0; row < height; row++) {
@@ -114,6 +115,5 @@ public class Table {
       System.out.println();
     }
     System.out.println();
+  }
 }
-}
-

@@ -19,8 +19,4 @@ public class Bakery {
     return name;
   }
 
-  public Cake sellCake(String size, int layers, String flavor, String frosting, String topping) {
-    System.out.println(name + " is preparing your cake...");
-    return new Cake(size, layers, flavor, frosting, topping);
-  }
 }

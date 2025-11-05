@@ -117,19 +117,19 @@ public class Cake {
   // Helper method to draw the cake with proper offset
   private void drawCakeWithOffset(int offset) {
     // Top of cake: candle
-    for (int i = 0; i < offset + (cakeWidth / 2); i++) {
+    for (int i = -4; i < offset + (cakeWidth / 2); i++) {
       System.out.print(" ");
     }
     System.out.println("|");
 
     // Candle flame
-    for (int i = 0; i < offset + (cakeWidth / 2) - 1; i++) {
+    for (int i = -4; i < offset + (cakeWidth / 2) - 1; i++) {
       System.out.print(" ");
     }
     System.out.println("\\*/");
 
     // Top frosting layer
-    for (int i = 0; i < offset; i++) {
+    for (int i = -4; i < offset; i++) {
       System.out.print(" ");
     }
     System.out.print(" ");
@@ -250,7 +250,6 @@ public class Cake {
     }
   }
 
-
   // Draw just the cake with specified dimensions
   public void drawCake() {
     drawCakeWithOffset(0);
@@ -261,7 +260,7 @@ public class Cake {
     // Body of the cake
     for (int row = 0; row < cakeHeight; row++) {
       // Add offset spaces to center the cake
-      for (int i = 0; i < offset; i++) {
+      for (int i = -4; i < offset; i++) {
         System.out.print(" ");
       }
 
@@ -283,5 +282,4 @@ public class Cake {
     this.cakeWidth = Math.max(3, width); // Minimum width of 3
     this.cakeHeight = Math.max(2, height); // Minimum height of 2
   }
-
 }

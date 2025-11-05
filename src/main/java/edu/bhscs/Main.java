@@ -57,8 +57,6 @@ public class Main {
               "Choose frosting (chocolate / vanilla / strawberry / lemon / rhubarb / blueberry): ");
       String topping = player.ask("Choose topping (sprinkles / cherries / candles / none): ");
 
-      Cake cake = bakery.sellCake("medium", layers, flavor, frosting, topping);
-      baker.bakeCake(0, "");
       baker.experience++;
 
       int price = 40;
@@ -84,11 +82,7 @@ public class Main {
           }
         }
 
-        System.out.println("\nHere's your cake:");
-        cake.showDecoratedCake();
-        if (layers == 1) {
-          cake.printAsciiCakeArt();
-        }
+
 
         System.out.println("\nYou ordered a " + layers + "-layer " + flavor + " cake.");
         System.out.println("With " + frosting + " frosting and " + topping + " on top!");
