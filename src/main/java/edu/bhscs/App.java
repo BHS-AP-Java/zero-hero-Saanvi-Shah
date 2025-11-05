@@ -17,8 +17,8 @@ public class App {
 
   public static void date10_27() {
     Baker bob = new Baker("Bob");
-    Table t = new Table(13, 50);
-    t.setLeg("|?|");
+    Table t = new Table(5, 65);
+    t.setLegStyle("|?|");
     Cake bDay = bob.bakes(7, "Suzzie");
     bDay.draw(t);
   }

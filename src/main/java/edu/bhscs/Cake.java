@@ -102,15 +102,20 @@ public class Cake {
       return;
     }
 
-    // Get table info
-    int tableWidth = t.getWidth();
-    int tableLegs = t.getLegs();
-    int tableHeight = 4; // How tall the legs are
-
     System.out.println("\n");
 
-    int offset = (tableWidth - cakeWidth) / 2;
+    // Calculate offset to center the cake on the table
+    int offset = (t.getWidth() - cakeWidth) / 2;
 
+    // Draw the cake
+    drawCakeWithOffset(offset);
+
+    // Draw the table
+    t.drawTable();
+  }
+
+  // Helper method to draw the cake with proper offset
+  private void drawCakeWithOffset(int offset) {
     // Top of cake: candle
     for (int i = 0; i < offset + (cakeWidth / 2); i++) {
       System.out.print(" ");
@@ -123,7 +128,7 @@ public class Cake {
     }
     System.out.println("\\*/");
 
-    // Top frosting layer of the cake
+    // Top frosting layer
     for (int i = 0; i < offset; i++) {
       System.out.print(" ");
     }
@@ -133,70 +138,8 @@ public class Cake {
     }
     System.out.println(" ");
 
-    // Body of the cake - using a LOOP based on cakeHeight!
-    // Change cakeHeight in the constructor to make the cake taller or shorter
-    for (int row = 0; row < cakeHeight; row++) {
-      // Add offset spaces to center the cake
-      for (int i = 0; i < offset; i++) {
-        System.out.print(" ");
-      }
-
-      // Draw the cake body
-      System.out.print("|");
-      for (int col = 0; col < cakeWidth - 2; col++) {
-        System.out.print("#");
-      }
-      System.out.println("|");
-    }
-
-    // STEP 2: Draw the table top (independent of cake!)
-    // This loop makes the table top using the table's width
-    for (int i = 0; i < tableWidth; i++) {
-      System.out.print("=");
-    }
-    System.out.println();
-
-    // STEP 3: Draw the table legs using the FENCEPOST PROBLEM
-    // Fencepost problem: N legs means N-1 gaps between them
-    // We need to evenly space the legs across the table width
-
-    for (int row = 0; row < tableHeight; row++) {
-      // For each row of the table legs...
-
-      for (int legNum = 0; legNum < tableLegs; legNum++) {
-        // Calculate where THIS leg should be positioned
-        // This formula solves the fencepost problem!
-        int legPosition;
-        if (tableLegs == 1) {
-          // Special case: one leg goes in the middle
-          legPosition = tableWidth / 2;
-        } else {
-          // Evenly space the legs from position 0 to position (width-1)
-          legPosition = legNum * (tableWidth - 1) / (tableLegs - 1);
-        }
-
-        // Print spaces until we reach this leg's position
-        if (legNum == 0) {
-          // First leg: print spaces from the start
-          for (int space = 0; space < legPosition; space++) {
-            System.out.print(" ");
-          }
-        } else {
-          // Other legs: print spaces from the previous leg
-          int previousLegPosition = (legNum - 1) * (tableWidth - 1) / (tableLegs - 1);
-          int gapSize = legPosition - previousLegPosition - 1;
-          for (int space = 0; space < gapSize; space++) {
-            System.out.print(" ");
-          }
-        }
-
-        // Now draw the actual leg
-        System.out.print("|");
-      }
-      System.out.println();
-    }
-
-    System.out.println();
+    // Cake body
+    drawCakeBody(offset);
   }
 
   public void printAsciiCakeArt() {
@@ -308,63 +251,37 @@ public class Cake {
   }
 
 
+  // Draw just the cake with specified dimensions
   public void drawCake() {
+    drawCakeWithOffset(0);
+  }
 
-    int height = Math.max(10, this.cakeHeight);
-    int width = Math.max(3, this.cakeWidth);
-
-    int depth = Math.max(0, Math.min((width - 1) / 2, this.layers));
-
-
-    int innerWidth = width - (depth * 2);
-    if (innerWidth < 1) {
-      depth = Math.max(0, (width - 1) / 2);
-      innerWidth = width - (depth * 2);
-    }
-
-
-    for (int i = 0; i < depth; i++) {
-      for (int s = 0; s < i; s++) {
+  // Helper method to draw the cake body with proper offset
+  private void drawCakeBody(int offset) {
+    // Body of the cake
+    for (int row = 0; row < cakeHeight; row++) {
+      // Add offset spaces to center the cake
+      for (int i = 0; i < offset; i++) {
         System.out.print(" ");
       }
-      int lineWidth = Math.max(0, width - (i * 2));
-      System.out.print("/");
-      for (int w = 0; w < lineWidth; w++) {
-        System.out.print("~");
-      }
-      System.out.println("\\");
-    }
 
-    // Draw cake body using height and innerWidth
-    for (int row = 0; row < height; row++) {
-      for (int s = 0; s < depth; s++) {
-        System.out.print(" ");
-      }
+      // Draw the cake body
       System.out.print("|");
-      for (int col = 0; col < innerWidth; col++) {
+      for (int col = 0; col < cakeWidth - 2; col++) {
         if (row % 3 == 0) {
-          System.out.print("=");
+          System.out.print("="); // Decorative layer
         } else {
           System.out.print("#");
         }
       }
-      System.out.print("|");
-      for (int d = 0; d < depth; d++) {
-        System.out.print("/");
-      }
-      System.out.println();
+      System.out.println("|");
     }
+  }
 
-    // Draw bottom of the cake
-    for (int s = 0; s < depth; s++) {
-      System.out.print(" ");
-    }
-    System.out.print("\\");
-    for (int i = 0; i < innerWidth; i++) {
-      System.out.print("_");
-    }
-    System.out.print("/");
-    System.out.println();
+  // Method to set cake dimensions
+  public void setCakeDimensions(int width, int height) {
+    this.cakeWidth = Math.max(3, width); // Minimum width of 3
+    this.cakeHeight = Math.max(2, height); // Minimum height of 2
   }
 
 }
