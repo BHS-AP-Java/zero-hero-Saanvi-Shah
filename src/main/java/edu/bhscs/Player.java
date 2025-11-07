@@ -28,55 +28,13 @@ public class Player implements Customer {
     return name;
   }
 
-  public void setBankBalance(int balance) {
-    this.bankBalance = balance;
-    bank.customerBalance = balance;
-  }
-
-  public int getBankBalance() {
-    return bankBalance;
-  }
-
+  // Wrapper for text input so Main doesn’t need a Scanner
   public String ask(String prompt) {
     System.out.print(prompt);
     return sc.nextLine();
   }
 
-  public int askInt(String prompt) {
-    System.out.print(prompt);
-    while (!sc.hasNextInt()) {
-      System.out.print("Please enter a valid number: ");
-      sc.next();
-    }
-    int num = sc.nextInt();
-    sc.nextLine();
-    return num;
-  }
-
-  public int pay(int price) {
-    if (bankBalance >= price) {
-      bank.processTransaction(price);
-      bankBalance = bank.getCustomerBalance();
-      return price;
-    } else {
-      System.out.println("You don't have enough money for this purchase!");
-      return 0;
-    }
-  }
-
-  public String giveAnswer(String question) {
-    System.out.print(question + " ");
-    return sc.nextLine();
-  }
-
-  public void takeCake(Cake cake) {
-    System.out.println(name + " takes the cake and smiles happily!");
-  }
-
-  public void donateToPTSA(int amount) {
-    bank.depositToPTSA(amount);
-  }
-
+  // When the game ends, close the scanner
   public void closeScanner() {
     sc.close();
   }
