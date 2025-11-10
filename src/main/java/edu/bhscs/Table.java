@@ -41,6 +41,7 @@ public class Table implements Offsetable {
     return legs;
   }
 
+  // getWidth() already exists - implements Offsetable interface
   public int getWidth() {
     return width;
   }
@@ -57,36 +58,28 @@ public class Table implements Offsetable {
     return topStyle;
   }
 
-  // UPDATED: drawTable method using loops and solving Fencepost Problem
-  public void drawTable() {
-    // Draw the table top using the topStyle
-    // Loop to draw width characters (accounting for multi-char topStyle)
+  // NEW: Implement drawWithOffset() from Offsetable interface
+  public void drawWithOffset(int offset) {
+    // Draw the table top with offset
+    for (int i = 0; i < offset; i++) {
+      System.out.print(" ");
+    }
     for (int i = 0; i < width; i++) {
       System.out.print(topStyle);
     }
     System.out.println();
 
-    // Draw the table legs (solving the FENCEPOST PROBLEM)
-    // The fencepost problem: with N legs, there are N-1 gaps between them
-    // Legs must appear at BOTH ends
-
+    // Draw the table legs with offset
     for (int row = 0; row < height; row++) {
-      // For each row, we need to place legs at specific positions
       for (int legNum = 0; legNum < legs; legNum++) {
         int legPosition;
 
-        // Calculate position for this leg (evenly spaced)
-        // Special case: if only 1 leg, put it in the middle
         if (legs == 1) {
           legPosition = width / 2;
         } else {
-          // FENCEPOST SOLUTION: distribute legs from position 0 to position (width-1)
-          // This ensures legs at BOTH ends
           legPosition = legNum * (width - 1) / (legs - 1);
         }
 
-        // Print spaces before this leg
-        // Calculate how many spaces since the last leg (or start)
         int previousPosition = 0;
         if (legNum > 0) {
           if (legs == 1) {
@@ -96,16 +89,25 @@ public class Table implements Offsetable {
           }
         }
 
+        // Add offset to the first leg
         int spacesToPrint = legPosition - previousPosition;
+        if (legNum == 0) {
+          spacesToPrint += offset; // Add offset for first leg
+        }
+
         for (int space = 0; space < spacesToPrint; space++) {
           System.out.print(" ");
         }
 
-        // Draw the leg using the custom style
         System.out.print(legStyle);
       }
       System.out.println();
     }
     System.out.println();
+  }
+
+  // ORIGINAL drawTable() method - draws with no offset
+  public void drawTable() {
+    drawWithOffset(0); // Just calls drawWithOffset with 0
   }
 }
