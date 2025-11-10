@@ -1,3 +1,4 @@
+
 // Saanvi Shah
 // 11/07/25
 // P2
@@ -85,9 +86,9 @@ public class Cup implements Offsetable {
     }
     System.out.print("|");
     System.out.println();
-    System.out.println(); // Extra line for spacing
+    // REMOVED: Extra System.out.println() that was causing the floating gap
 
-    // If there's something below, draw it
+    // If there's something below, draw it immediately (no gap)
     if (below != null) {
       below.draw(null);
     }
