@@ -14,8 +14,8 @@ public class Main {
   // This method draws a table with a cake on it
   public static void date10_27() {
     Baker bob = new Baker("Bob");
-    Table t = new Table(4, 50); // 4 legs, width 50 to match your output
-    Cake bDay = bob.bakes(3, "Suzzie"); // 3 layers
+    Table t = new Table(3, 15); // 5 legs, width 50
+    Cake bDay = bob.bakes(5, "Suzzie"); // 3 layers
     bDay.draw(t);
   }
 
