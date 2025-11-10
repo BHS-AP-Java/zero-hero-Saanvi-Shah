@@ -6,14 +6,14 @@
 package edu.bhscs;
 
 public class Cake {
-// Add field declarations
+  // Add field declarations
 
-String size;
-int layers;
-String flavor;
-String frosting;
-String topping;
-Flour flour;
+  String size;
+  int layers;
+  String flavor;
+  String frosting;
+  String topping;
+  Flour flour;
 
   public Cake(String flavor, Flour f) {
     this.size = "medium";
@@ -37,8 +37,7 @@ Flour flour;
     if (legs < 4) legs = 4;
     if (tableWidth < 7) tableWidth = 7;
 
-   // int offset = (tableWidth - cakeWidth) / 2;
-
+    // int offset = (tableWidth - cakeWidth) / 2;
 
     // Then draw the cake on top (centered)
     System.out.println("\n🎂 Cake placed on table!");
