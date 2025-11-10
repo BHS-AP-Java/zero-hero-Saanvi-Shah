@@ -22,3 +22,6 @@ public class Main {
     Baker baker = new Baker(player);
     baker.f = new Flour("All-purpose flour", 5);
 
+    }
+
+  }

@@ -6,6 +6,14 @@
 package edu.bhscs;
 
 public class Cake {
+// Add field declarations
+
+String size;
+int layers;
+String flavor;
+String frosting;
+String topping;
+Flour flour;
 
   public Cake(String flavor, Flour f) {
     this.size = "medium";
