@@ -58,8 +58,12 @@ public class Table implements Offsetable {
     return topStyle;
   }
 
-  // NEW: Implement drawWithOffset() from Offsetable interface
-  public void drawWithOffset(int offset) {
+  // UPDATED: draw(Offsetable below) - new signature per assignment
+  // Uses the default getOffset() method from Offsetable interface
+  public void draw(Offsetable below) {
+    // Calculate offset using the default method
+    int offset = this.getOffset(below);
+
     // Draw the table top with offset
     for (int i = 0; i < offset; i++) {
       System.out.print(" ");
@@ -104,10 +108,10 @@ public class Table implements Offsetable {
       System.out.println();
     }
     System.out.println();
-  }
 
-  // ORIGINAL drawTable() method - draws with no offset
-  public void drawTable() {
-    drawWithOffset(0); // Just calls drawWithOffset with 0
+    // If there's something below, draw it
+    if (below != null) {
+      below.draw(null);
+    }
   }
 }
