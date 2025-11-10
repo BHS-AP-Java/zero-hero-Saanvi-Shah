@@ -19,6 +19,7 @@ public class Table {
     this.height = height;
     this.legStyle = "|"; // Default leg style
   }
+
   // chANGE
   // Overloaded constructor with default height
   public Table(int legs, int width) {
