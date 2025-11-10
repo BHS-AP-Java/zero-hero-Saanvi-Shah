@@ -24,22 +24,25 @@ Flour flour;
     this.flour = f;
   }
 
-  public draw(Table t) {
+  public void draw(Table t) {
 
+    if (t == null) {
+      System.out.println("Cannot draw cake - no table provided!");
+      return;
+    }
 
-    int offset = (tableWidth - cakeWidth) /2;
-
-
-    if (t == null) return (t);
-    int legs = t.legs;
-    int w = t.width;
+    int legs = t.getLegs();
+    int tableWidth = t.getWidth();
 
     if (legs < 4) legs = 4;
-    if (w < 7) w = 7;
+    if (tableWidth < 7) tableWidth = 7;
 
-    int[] pos = new int[4];
-    for (int i = 0; i < 4; i++) {
-      pos[i] = 1 + (int) Math.round(i * (double) (w - 3) / 3.0);
-    }
+   // int offset = (tableWidth - cakeWidth) / 2;
+
+
+    // Then draw the cake on top (centered)
+    System.out.println("\n🎂 Cake placed on table!");
+    System.out.println("Flavor: " + this.flavor);
+    System.out.println("Layers: " + this.layers);
   }
 }
