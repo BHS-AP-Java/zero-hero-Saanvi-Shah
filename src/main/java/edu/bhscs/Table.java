@@ -18,7 +18,7 @@ public class Table implements Offsetable {
     this.legs = legs;
     this.width = width;
     this.height = height;
-    this.legStyle = "|"; // Default leg style
+    this.legStyle = "|||"; // Default leg style
     this.topStyle = "="; // Default top style
   }
 

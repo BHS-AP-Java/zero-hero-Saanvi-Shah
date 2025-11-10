@@ -7,29 +7,25 @@ package edu.bhscs;
 
 public class Main {
   public static void main(String[] args) {
-// Test the new Offsetable stacking feature with new Cup class
- CupOnTable();
+    // Test the new Offsetable stacking feature with new Cup class
+    CupOnTable();
 
-// Test the Table with Cake on it
+    // Test the Table with Cake on it
 
- date10_27();
-
+    date10_27();
   }
-
 
   // Test method for stacking Offsetable objects
   public static void CupOnTable() {
     Table table1 = new Table(4, 16);
     Cup coffee = new Cup("☕");
     coffee.draw(table1);
-
   }
-
 
   // This method draws a table with a cake on it
   public static void date10_27() {
     Baker bob = new Baker("Bob");
-    Table t = new Table(7, 25); // 5 legs, width 50
+    Table t = new Table(7, 35); // 5 legs, width 50
     Cake bDay = bob.bakes(5, "Suzzie"); // 3 layers
     bDay.draw(t);
   }
