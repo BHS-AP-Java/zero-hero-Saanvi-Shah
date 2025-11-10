@@ -7,9 +7,30 @@ package edu.bhscs;
 
 public class Main {
   public static void main(String[] args) {
-    // CHANGED: Instead of player selection, draw the table
-    date10_27();
+    // Test the new Offsetable stacking feature with new Cup class
+    testStacking();
   }
+
+
+  // Test method for stacking Offsetable objects
+  public static void testStacking() {
+    System.out.println("=== Test 1: Cup on Table ===");
+    Table table1 = new Table(4, 30);
+    Cup coffee = new Cup("☕");
+    coffee.draw(table1);
+
+    System.out.println("\n=== Test 2: Cake on Table ===");
+    Baker bob = new Baker("Bob");
+    Table table2 = new Table(4, 50);
+    Cake birthdayCake = bob.bakes(3, "You");
+    birthdayCake.draw(table2);
+
+    System.out.println("\n=== Test 3: Multiple Cups on Table ===");
+    Table table3 = new Table(3, 20);
+    Cup tea = new Cup("🍵", 6, 3);
+    tea.draw(table3);
+  }
+
 
   // This method draws a table with a cake on it
   public static void date10_27() {
