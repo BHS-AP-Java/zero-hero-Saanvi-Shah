@@ -30,8 +30,12 @@ public class Cake implements Offsetable {
     return this.width;
   }
 
-  // NEW: Implement drawWithOffset() from Offsetable interface
-  public void drawWithOffset(int offset) {
+  // UPDATED: draw(Offsetable below) - new signature per assignment
+  // Uses the default getOffset() method from Offsetable interface
+  public void draw(Offsetable below) {
+    // Calculate offset using the default method
+    int offset = this.getOffset(below);
+
     String candle = "|";
     String candleFlame = "\\*/";
     String frosting = "~";
@@ -73,48 +77,10 @@ public class Cake implements Offsetable {
       System.out.print(cakeSide);
       System.out.println();
     }
-  }
 
-  // UPDATED: draw(Table t) method - handles both positive and negative offsets
-  // Checks if table is bigger or cake is bigger
-  public void draw(Table t) {
-    if (t == null) {
-      System.out.println("Cannot draw cake - no table provided!");
-      return;
+    // If there's something below, draw it
+    if (below != null) {
+      below.draw(null); // Draw the thing below with no offset
     }
-
-    int tableWidth = t.getWidth();
-    int cakeWidth = this.getWidth();
-
-    // Calculate offset (difference between widths)
-    int offset = (tableWidth - cakeWidth) / 2;
-
-    // ASSIGNMENT REQUIREMENT: Check if offset is positive or negative
-    if (offset < 0) {
-      // Table is smaller than cake - center the TABLE under the cake
-      System.out.println("⚠️ Table is smaller than cake!");
-
-      // Draw cake with no offset (at left edge)
-      this.drawWithOffset(0);
-
-      // Draw table centered under the cake
-      int tableOffset = -offset; // Make it positive for table
-      t.drawWithOffset(tableOffset);
-
-    } else {
-      // Table is bigger than or equal to cake - center the CAKE on the table
-
-      // Draw cake centered on table
-      this.drawWithOffset(offset);
-
-      // Draw table with no offset
-      t.drawWithOffset(0);
-    }
-
-    // Print cake info
-    System.out.println("\nCake Info:");
-    System.out.println("Flavor: " + this.flavor);
-    System.out.println("Layers: " + this.layers);
-    System.out.println("Cake width: " + cakeWidth + ", Table width: " + tableWidth);
   }
 }
