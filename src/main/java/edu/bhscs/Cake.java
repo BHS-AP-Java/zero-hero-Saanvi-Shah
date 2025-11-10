@@ -5,14 +5,15 @@
 
 package edu.bhscs;
 
-public class Cake {
-  // FIX #1: Add all the missing field declarations
+public class Cake implements Offsetable {
+  // FIELDS - Declare all properties at the top
   String size;
   int layers;
   String flavor;
   String frosting;
   String topping;
   Flour flour;
+  int width; // NEW: width of the cake in characters
 
   public Cake(String flavor, Flour f) {
     this.size = "medium";
@@ -21,6 +22,57 @@ public class Cake {
     this.frosting = "buttercream";
     this.topping = "sprinkles";
     this.flour = f;
+    this.width = 10; // Default cake width
+  }
+
+  // NEW: Implement getWidth() from Offsetable interface
+  public int getWidth() {
+    return this.width;
+  }
+
+  // NEW: Implement drawWithOffset() from Offsetable interface
+  public void drawWithOffset(int offset) {
+    String candle = "|";
+    String candleFlame = "\\*/";
+    String frosting = "~";
+    String cakeFilling = "#";
+    String cakeSide = "|";
+
+    int cakeWidth = this.width;
+
+    // 1. Draw candle (with offset)
+    for (int i = 0; i < offset + (cakeWidth / 2); i++) {
+      System.out.print(" ");
+    }
+    System.out.println(candle);
+
+    // 2. Draw candle flame (with offset)
+    for (int i = 0; i < offset + (cakeWidth / 2) - 1; i++) {
+      System.out.print(" ");
+    }
+    System.out.println(candleFlame);
+
+    // 3. Draw frosting line
+    for (int i = 0; i < offset; i++) {
+      System.out.print(" ");
+    }
+    for (int i = 0; i < cakeWidth; i++) {
+      System.out.print(frosting);
+    }
+    System.out.println();
+
+    // 4. Draw cake layers
+    for (int layer = 0; layer < this.layers; layer++) {
+      for (int i = 0; i < offset; i++) {
+        System.out.print(" ");
+      }
+      System.out.print(cakeSide);
+      for (int i = 0; i < cakeWidth - 2; i++) {
+        System.out.print(cakeFilling);
+      }
+      System.out.print(cakeSide);
+      System.out.println();
+    }
   }
 
   // UPDATED: draw(Table t) method - handles both positive and negative offsets
