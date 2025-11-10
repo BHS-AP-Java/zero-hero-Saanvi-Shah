@@ -22,7 +22,7 @@ public class Cake implements Offsetable {
     this.frosting = "buttercream";
     this.topping = "sprinkles";
     this.flour = f;
-    this.width = 10; // Default cake width
+    this.width = 20; // Default cake width
   }
 
   // NEW: Implement getWidth() from Offsetable interface
