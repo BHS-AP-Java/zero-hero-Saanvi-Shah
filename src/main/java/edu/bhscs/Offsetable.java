@@ -2,12 +2,15 @@
 // 10/31/25
 // P2
 // Offsetable Interface - for objects that can be centered/offset
+
 package edu.bhscs;
 
 /**
  * The Offsetable interface defines objects that have a width and can be drawn with an offset
- * (shifted to the right). This allows Cake and Table to work together without depending directly on
- * each other's class structure.
+ * (shifted to the right).
+ *
+ * This allows Cake and Table to work together without depending directly on each other's class
+ * structure.
  */
 public interface Offsetable {
 
