@@ -2,7 +2,6 @@
 // 10/07/25
 // P2
 // This is making the CAKE class
-// Modified on Nov 9th
 
 package edu.bhscs;
 
@@ -24,8 +23,8 @@ public class Cake {
     this.flour = f;
   }
 
-  // UPDATED: draw(Table t) method - draws cake matching assignment requirements
-  // Emphasizes loops as required by the assignment
+  // UPDATED: draw(Table t) method - handles both positive and negative offsets
+  // Checks if table is bigger or cake is bigger
   public void draw(Table t) {
     if (t == null) {
       System.out.println("Cannot draw cake - no table provided!");
@@ -33,67 +32,37 @@ public class Cake {
     }
 
     int tableWidth = t.getWidth();
+    int cakeWidth = this.getWidth();
 
-    // Cake components
-    String candle = "|";
-    String candleFlame = "\\*/";
-    String frosting = "~";
-    String cakeFilling = "#";
-    String cakeSide = "|";
-
-    // Calculate cake width (should be smaller than table width)
-    int cakeWidth = 8; // Width of the cake filling part
+    // Calculate offset (difference between widths)
     int offset = (tableWidth - cakeWidth) / 2;
 
-    // 1. Draw candle (centered on cake)
-    int candleOffset = (tableWidth - candle.length()) / 2;
-    for (int i = 0; i < candleOffset; i++) {
-      System.out.print(" ");
-    }
-    System.out.println(candle);
+    // ASSIGNMENT REQUIREMENT: Check if offset is positive or negative
+    if (offset < 0) {
+      // Table is smaller than cake - center the TABLE under the cake
+      System.out.println("⚠️ Table is smaller than cake!");
 
-    // 2. Draw candle flame (centered)
-    int flameOffset = (tableWidth - candleFlame.length()) / 2;
-    for (int i = 0; i < flameOffset; i++) {
-      System.out.print(" ");
-    }
-    System.out.println(candleFlame);
+      // Draw cake with no offset (at left edge)
+      this.drawWithOffset(0);
 
-    // 3. Draw frosting line (wavy top of cake)
-    for (int i = 0; i < offset; i++) {
-      System.out.print(" ");
-    }
-    for (int i = 0; i < cakeWidth; i++) {
-      System.out.print(frosting);
-    }
-    System.out.println();
+      // Draw table centered under the cake
+      int tableOffset = -offset; // Make it positive for table
+      t.drawWithOffset(tableOffset);
 
-    // 4. Draw cake layers (repeat based on this.layers)
-    for (int layer = 0; layer < this.layers; layer++) {
-      // Print offset spaces
-      for (int i = 0; i < offset; i++) {
-        System.out.print(" ");
-      }
+    } else {
+      // Table is bigger than or equal to cake - center the CAKE on the table
 
-      // Print left side
-      System.out.print(cakeSide);
+      // Draw cake centered on table
+      this.drawWithOffset(offset);
 
-      // Print filling
-      for (int i = 0; i < cakeWidth - 2; i++) {
-        System.out.print(cakeFilling);
-      }
-
-      // Print right side
-      System.out.print(cakeSide);
-      System.out.println();
+      // Draw table with no offset
+      t.drawWithOffset(0);
     }
 
-    // 5. Draw the table
-    t.drawTable();
-
-    // 6. Print cake info
+    // Print cake info
     System.out.println("\nCake Info:");
     System.out.println("Flavor: " + this.flavor);
     System.out.println("Layers: " + this.layers);
+    System.out.println("Cake width: " + cakeWidth + ", Table width: " + tableWidth);
   }
 }
