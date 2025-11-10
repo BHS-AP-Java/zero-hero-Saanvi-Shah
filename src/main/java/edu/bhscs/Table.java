@@ -58,7 +58,7 @@ public class Table implements Offsetable {
     return topStyle;
   }
 
-  // UPDATED: draw(Offsetable below) - new signature per assignment
+  // UPDATED: draw(Offsetable below) - Fixed for multi-character leg styles
   // Uses the default getOffset() method from Offsetable interface
   public void draw(Offsetable below) {
     // Calculate offset using the default method
@@ -74,40 +74,44 @@ public class Table implements Offsetable {
     System.out.println();
 
     // Draw the table legs with offset
+    // FIXED: Account for multi-character leg styles
+    int legStyleWidth = legStyle.length();
+
     for (int row = 0; row < height; row++) {
+      int previousEndPosition = 0;
+
       for (int legNum = 0; legNum < legs; legNum++) {
-        int legPosition;
+        int legStartPosition;
 
         if (legs == 1) {
-          legPosition = width / 2;
+          // One leg in the middle
+          legStartPosition = (width - legStyleWidth) / 2;
         } else {
-          legPosition = legNum * (width - 1) / (legs - 1);
+          // FENCEPOST FIX: Distribute legs from 0 to (width - legStyleWidth)
+          // This ensures last leg ends exactly at table edge
+          legStartPosition = legNum * (width - legStyleWidth) / (legs - 1);
         }
 
-        int previousPosition = 0;
-        if (legNum > 0) {
-          if (legs == 1) {
-            previousPosition = 0;
-          } else {
-            previousPosition = (legNum - 1) * (width - 1) / (legs - 1) + legStyle.length();
-          }
-        }
-
-        // Add offset to the first leg
-        int spacesToPrint = legPosition - previousPosition;
+        // Calculate spaces to print before this leg
+        int spacesToPrint = legStartPosition - previousEndPosition;
         if (legNum == 0) {
-          spacesToPrint += offset; // Add offset for first leg
+          spacesToPrint += offset; // Add global offset for first leg
         }
 
+        // Print spaces
         for (int space = 0; space < spacesToPrint; space++) {
           System.out.print(" ");
         }
 
+        // Draw the leg
         System.out.print(legStyle);
+
+        // Update where this leg ends
+        previousEndPosition = legStartPosition + legStyleWidth;
       }
       System.out.println();
     }
-    System.out.println();
+    // REMOVED: Extra System.out.println() that was causing spacing issues
 
     // If there's something below, draw it
     if (below != null) {
