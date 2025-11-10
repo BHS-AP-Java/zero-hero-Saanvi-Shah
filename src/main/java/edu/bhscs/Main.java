@@ -15,7 +15,7 @@ public class Main {
     date10_27();
   }
 
-  // Test method for stacking Offsetable objects
+  // Test stackable Cup on the table with Offset
   public static void CupOnTable() {
     Table table1 = new Table(4, 16);
     Cup coffee = new Cup("☕");
@@ -25,12 +25,12 @@ public class Main {
   // This method draws a table with a cake on it
   public static void date10_27() {
     Baker bob = new Baker("Bob");
-    Table t = new Table(7, 35); // 5 legs, width 50
+    Table t = new Table(7, 43); // 5 legs, width 50
     Cake bDay = bob.bakes(5, "Suzzie"); // 3 layers
     bDay.draw(t);
   }
 
-  // COMMENTED OUT: Player selection code (can be used later)
+  // COMMENTED OUT: Player selection code (can be used later - please do not remove)
   /*
    * public static void playerGame() { Player player = new Player(); int playerChoice =
    * player.askInt("Enter 1, 2, or 3 to choose your character: ");
